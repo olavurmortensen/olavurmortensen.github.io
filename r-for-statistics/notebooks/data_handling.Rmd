@@ -1,0 +1,24 @@
+---
+title: "Data handling"
+output:
+  html_notebook: default
+  html_document: default
+---
+
+
+In R we have a dataset already loaded called `iris`. Let's see how the top rows (the head) of this dataset looks like, by running `head(iris)`.
+
+```{r}
+print(head(iris))
+```
+
+This is a data frame, but we would rather work with the data in tibble format. So we load the `dplyr` package/library, which contains the `as_tibble` function (among other things) and convert the data frame to tibble.
+
+```{r}
+library(dplyr)
+iris_tbl <- as_tibble(iris)
+```
+
+
+
+
