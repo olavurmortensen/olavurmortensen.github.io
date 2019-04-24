@@ -3,4 +3,42 @@ title: "Basic R"
 output: html_notebook
 ---
 
-Temp temp temp temp temp temp temp temp.
+## Arithmetic
+
+```{r}
+1 + 1
+```
+
+## Variables
+
+```{r}
+var <- 1
+var
+```
+
+```{r}
+var1 <- 1
+var2 <- 2
+var1 / var2
+```
+
+```{r}
+var3 <- var1 / var2
+var3
+```
+
+## Functions
+
+```{r}
+log(10)
+```
+
+```{r}
+var <- 10
+log(var)
+```
+
+```{r}
+t.test(iris$Sepal.Length, iris$Sepal.Width)
+```
+

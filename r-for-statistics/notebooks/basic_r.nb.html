@@ -239,10 +239,106 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>Temp temp temp temp temp temp temp temp.</p>
+<div id="arithmetic" class="section level2">
+<h2>Arithmetic</h2>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMSArIDFcblxuYGBgIn0= -->
+<pre class="r"><code>1 + 1
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
+<pre><code>[1] 2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="variables" class="section level2">
+<h2>Variables</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyIDwtIDFcbnZhclxuYGBgIn0= -->
+<pre class="r"><code>var &lt;- 1
+var</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
+<pre><code>[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyMSA8LSAxXG52YXIyIDwtIDJcbnZhcjEgLyB2YXIyXG5gYGAifQ== -->
+<pre class="r"><code>var1 &lt;- 1
+var2 &lt;- 2
+var1 / var2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNVxuIn0= -->
+<pre><code>[1] 0.5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyMyA8LSB2YXIxIC8gdmFyMlxudmFyM1xuYGBgIn0= -->
+<pre class="r"><code>var3 &lt;- var1 / var2
+var3</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNVxuIn0= -->
+<pre><code>[1] 0.5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9nKDEwKVxuXG5gYGAifQ== -->
+<pre class="r"><code>log(10)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMzAyNTg1XG4ifQ== -->
+<pre><code>[1] 2.302585</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyIDwtIDEwXG5sb2codmFyKVxuYGBgIn0= -->
+<pre class="r"><code>var &lt;- 10
+log(var)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMzAyNTg1XG4ifQ== -->
+<pre><code>[1] 2.302585</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudC50ZXN0KGlyaXMkU2VwYWwuTGVuZ3RoLCBpcmlzJFNlcGFsLldpZHRoKVxuXG5gYGAifQ== -->
+<pre class="r"><code>t.test(iris$Sepal.Length, iris$Sepal.Width)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFdlbGNoIFR3byBTYW1wbGUgdC10ZXN0XG5cbmRhdGE6ICBpcmlzJFNlcGFsLkxlbmd0aCBhbmQgaXJpcyRTZXBhbC5XaWR0aFxudCA9IDM2LjQ2MywgZGYgPSAyMjUuNjgsIHAtdmFsdWUgPCAyLjJlLTE2XG5hbHRlcm5hdGl2ZSBoeXBvdGhlc2lzOiB0cnVlIGRpZmZlcmVuY2UgaW4gbWVhbnMgaXMgbm90IGVxdWFsIHRvIDBcbjk1IHBlcmNlbnQgY29uZmlkZW5jZSBpbnRlcnZhbDpcbiAyLjYzNTQ0IDIuOTM2NTZcbnNhbXBsZSBlc3RpbWF0ZXM6XG5tZWFuIG9mIHggbWVhbiBvZiB5IFxuIDUuODQzMzMzICAzLjA1NzMzMyBcbiJ9 -->
+<pre><code>
+    Welch Two Sample t-test
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmFzaWMgUiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGVtcCB0ZW1wIHRlbXAgdGVtcCB0ZW1wIHRlbXAgdGVtcCB0ZW1wLg==</div>
+data:  iris$Sepal.Length and iris$Sepal.Width
+t = 36.463, df = 225.68, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 2.63544 2.93656
+sample estimates:
+mean of x mean of y 
+ 5.843333  3.057333 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmFzaWMgUiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgQXJpdGhtZXRpYwoKYGBge3J9CjEgKyAxCmBgYAoKIyMgVmFyaWFibGVzCgpgYGB7cn0KdmFyIDwtIDEKdmFyCmBgYAoKYGBge3J9CnZhcjEgPC0gMQp2YXIyIDwtIDIKdmFyMSAvIHZhcjIKYGBgCgpgYGB7cn0KdmFyMyA8LSB2YXIxIC8gdmFyMgp2YXIzCmBgYAoKIyMgRnVuY3Rpb25zCgpgYGB7cn0KbG9nKDEwKQpgYGAKCmBgYHtyfQp2YXIgPC0gMTAKbG9nKHZhcikKYGBgCgpgYGB7cn0KdC50ZXN0KGlyaXMkU2VwYWwuTGVuZ3RoLCBpcmlzJFNlcGFsLldpZHRoKQpgYGAKCg==</div>
 
 
 
