@@ -1,7 +1,11 @@
 ---
 title: "Case-study"
-output: html_notebook
+output:
+  html_notebook: default
+  html_document: default
 ---
+
+
 
 ```{r eval=FALSE}
 install.packages('tidyverse')  # Installs several packages from the tidyverse ecosystem.
@@ -149,11 +153,74 @@ p3 <- ggplot(data, aes(x='', bmi2)) +
 multiplot(p1, p2, p3, cols=3)
 ```
 
+## Filter outliers
+
+```{r}
+n_before = dim(data)[1]
+data = data %>% filter(age2 > 4 | is.na(age2)) %>%
+  filter(w1 < 20 | is.na(w1)) %>%
+  filter(h0 < 90 | is.na(h0)) %>%
+  filter(bmi0 > 0.0006 | is.na(bmi0)) %>%
+  filter(bmi1 < 0.003 | is.na(bmi1))
+n_after = dim(data)[1]
+print(n_before - n_after)
+```
+
+
 ## BMI
 
+```{r}
+ggplot(data, aes(bmi0)) +
+  geom_histogram(na.rm=TRUE, bins=15) +
+  ggtitle('Histogram of BMI at birth')
+```
 
 
+```{r}
+ggplot(data, aes(bmi1)) +
+  geom_histogram(na.rm=TRUE, bins=15) +
+  ggtitle('Histogram of BMI at first exam day')
+```
 
+```{r}
+ggplot(data, aes(bmi2)) +
+  geom_histogram(na.rm=TRUE, bins=10) +
+  ggtitle('Histogram of BMI at second exam day')
+```
+
+```{r}
+ggplot(data, aes(sample=bmi0)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  ggtitle('QQ-plot of BMI at birth')
+```
+
+```{r}
+ggplot(data, aes(sample=bmi1)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  ggtitle('QQ-plot of BMI at first exam day')
+```
+
+```{r}
+ggplot(data, aes(sample=bmi1)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  ggtitle('QQ-plot of BMI at second exam day')
+```
+
+## Scatterplots
+
+```{r}
+ggplot(data, aes(bmi0, bmi1)) +
+  geom_point(na.rm=TRUE) +
+  ggtitle("Scatterplot of BMI") + xlab("Birth") + ylab("First exam day") +
+  theme(plot.title=element_text(hjust=0.5))
+```
+
+```{r}
+ggplot(data, aes(bmi0, bmi2)) +
+  geom_point(na.rm=TRUE) +
+  ggtitle("Scatterplot of BMI") + xlab("Birth") + ylab("Second exam day") +
+  theme(plot.title=element_text(hjust=0.5))
+```
 
 # Modelling
 
