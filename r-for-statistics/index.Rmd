@@ -1,0 +1,67 @@
+---
+title: "R for Statistics"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+**Table of contents:**
+
+<!-- toc -->
+- [Preparation](#Preparation)
+  * [Reading material](#Reading-material)
+  * [Installing R/Rstudio](#Installing-RRstudio)
+- [Course overview](#Course-overview)
+- [Course notes](#Course-notes)
+- [After the course](#After-the-course)
+
+<!-- tocstop -->
+
+Attendees of the "R for Statistics" course should read this page carefully, in particular the "Preparation" section, including the "Reading material" and "Installing R/Rstudio" sections.
+
+# Preparation
+
+## Reading material
+
+Before the start of the course, read the "R for Beginners" PDF. This short introduction to R by Emmanuel Paradis is only 76 pages and available free of charge.
+
+> "R for Beginners" by Emmanuel Paradis:
+>
+> https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+
+We want you to understand the concepts layed out in this book to the best of your abilities, but the book does cover some more advanced material that we do not expect you to understand fully. In general, we want you to understand:
+
+* How the R command-line works
+* How to use arithmetic and variables in R
+* What functions are for and how to use them
+* Basic data types like strings, lists, and especially *data frames*
+
+Read chapters 1 through 3 carefully, and make sure you understand all the concepts to the best of your ability. Read through chapters 4 through 6 as well, and make sure you understand the basics of these chapters, but don't get caught up in the details if you are having great difficulty with the subject.
+
+## Installing R/Rstudio
+
+You need to bring a laptop to the course, and before you arrive you need to install R and Rstudio. Download and install the free desktop version of RStudio. R and RStudio are available for Windows, Mac and Linux.
+
+> Download and install RStudio Desktop with the Open Source License:
+> 
+> https://www.rstudio.com/products/rstudio/download/
+
+After installing RStudio, try installing this package. Hopefully, the package will be installed on your system without problems.
+
+```
+install.packages('dplyr')
+```
+
+# Course overview
+
+# After the course
+
+# Course notes
+
+Below is an overview of all the course notes.
+
+Day/lecture | Description | Lecture notes
+---|---|---
+1/1 | How the R commandline works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_r.nb.html)
+1/2 | How the RStudio interface works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_rstudio.nb.html)
+1/3 | How to work with data structures | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/data_handling.nb.html)

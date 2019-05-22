@@ -1,0 +1,164 @@
+---
+title: "Case-study"
+output: html_notebook
+---
+
+```{r eval=FALSE}
+install.packages('tidyverse')  # Installs several packages from the tidyverse ecosystem.
+install.packages('magrittr')
+install.packages('devtools')
+```
+
+```{r}
+library(readxl)
+library(tibble)
+library(ggplot2)
+library(lubridate)
+library(magrittr)
+library(devtools)
+```
+
+# Read and pre-process data
+
+```{r}
+data = read_xlsx("/home/olavur/Documents/sync/workstuff/statistics_in_r/weight_height_data.xlsx")
+```
+
+```{r}
+head(data)
+```
+
+
+```{r}
+data = data %>% rename("ID" = "Identification number", "birth" = "Date of birth", "gender" = "Gender",
+              "w0" = "Weight_birth", "h0" = "Height_birth", "exam1" = "Exam_day1", "h1" = "Height_1",
+              "w1" = "Weight_1", "exam2" = "Exam_day2", "h2" = "Height_2", "w2" = "Weight_2")
+```
+
+```{r}
+head(data)
+```
+
+
+```{r}
+birth = data %>% pull(birth) %>%
+  ymd(.)
+exam1 = data %>% pull(exam1) %>%
+  dmy(.)
+
+age1 = interval(birth, exam1) %>%
+  as.duration(.) %>%
+  as.numeric(., "years")
+
+exam2 = data %>% pull(exam2) %>%
+  dmy(.)
+age2 = interval(birth, exam2) %>%
+  as.duration(.) %>%
+  as.numeric(., "years")
+```
+
+
+
+```{r}
+data = data %>% add_column(age1, age2)
+data = data %>% mutate(w0=w0/1000)
+data = data %>% mutate(gender=recode(gender, "Male" = "m", "Female" = "f"))
+data = data %>% add_column(bmi0=data$w0/data$h0^2,
+                  bmi1=data$w1/data$h1^2,
+                  bmi2=data$w2/data$h2^2)
+head(data)
+```
+
+
+# Exploratory data analysis
+
+## Distributions of age, weight, height and BMI
+
+```{r}
+# Multiplot script available at:
+# http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
+source("multiplot.R")
+```
+
+
+```{r}
+na_count1 = data %>% summarize(na_count=sum(is.na(age1))) %>% pull()
+na_count2 = data %>% summarize(na_count=sum(is.na(age2))) %>% pull()
+
+p1 <- ggplot(data, aes(x='', age1)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Age at first exam day\nNA count: %d', na_count1))
+p2 <- ggplot(data, aes(x='', age2)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Age at second exam day\nNA count: %d', na_count2))
+multiplot(p1, p2, cols=2)
+```
+
+
+```{r}
+na_count0 = data %>% summarize(na_count=sum(is.na(w0))) %>% pull()
+na_count1 = data %>% summarize(na_count=sum(is.na(w1))) %>% pull()
+na_count2 = data %>% summarize(na_count=sum(is.na(w2))) %>% pull()
+
+p1 <- ggplot(data, aes(x='', w0)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('Weight') + ggtitle(sprintf('Weight at birth\nNA count: %d', na_count0))
+p2 <- ggplot(data, aes(x='', w1)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Weight at first exam day\nNA count: %d', na_count1))
+p3 <- ggplot(data, aes(x='', w2)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Weight at second exam day\nNA count: %d', na_count2))
+multiplot(p1, p2, p3, cols=3)
+```
+
+
+```{r}
+na_count0 = data %>% summarize(na_count=sum(is.na(h0))) %>% pull()
+na_count1 = data %>% summarize(na_count=sum(is.na(h1))) %>% pull()
+na_count2 = data %>% summarize(na_count=sum(is.na(h2))) %>% pull()
+
+p1 <- ggplot(data, aes(x='', h0)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('Height') + ggtitle(sprintf('Height at birth\nNA count: %d', na_count0))
+p2 <- ggplot(data, aes(x='', h1)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Height at first exam day\nNA count: %d', na_count1))
+p3 <- ggplot(data, aes(x='', h2)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('Height at second exam day\nNA count: %d', na_count2))
+multiplot(p1, p2, p3, cols=3)
+```
+
+
+
+```{r}
+na_count0 = data %>% summarize(na_count=sum(is.na(bmi0))) %>% pull()
+na_count1 = data %>% summarize(na_count=sum(is.na(bmi1))) %>% pull()
+na_count2 = data %>% summarize(na_count=sum(is.na(bmi2))) %>% pull()
+
+p1 <- ggplot(data, aes(x='', bmi0)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('BMI') + ggtitle(sprintf('BMI at birth\nNA count: %d', na_count0))
+p2 <- ggplot(data, aes(x='', bmi1)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('BMI at first exam day\nNA count: %d', na_count1))
+p3 <- ggplot(data, aes(x='', bmi2)) +
+  geom_boxplot(na.rm=TRUE) +
+  xlab('') + ylab('') + ggtitle(sprintf('BMI at second exam day\nNA count: %d', na_count2))
+multiplot(p1, p2, p3, cols=3)
+```
+
+## BMI
+
+
+
+
+
+# Modelling
+
+
+```{r}
+devtools::session_info()
+```
+

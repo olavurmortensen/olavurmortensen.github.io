@@ -1,5 +1,5 @@
 ---
-title: "Basic R"
+title: "Basic Rstudio"
 output: html_notebook
 ---
 
