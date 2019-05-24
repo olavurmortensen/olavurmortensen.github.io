@@ -1,8 +1,8 @@
 ---
 title: "R for Statistics"
 output:
-  html_document: default
   html_notebook: default
+  html_document: default
 ---
 
 **Table of contents:**
@@ -17,7 +17,9 @@ output:
 
 <!-- tocstop -->
 
-Attendees of the "R for Statistics" course should read this page carefully, in particular the "Preparation" section, including the "Reading material" and "Installing R/Rstudio" sections.
+This website concerns the "R for Statistics" PhD course at the University of the Faroe Islands. Read more about the course here: https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/
+
+Attendees of this course should read this page carefully, in particular the "Preparation" section, including the "Reading material" and "Installing R/Rstudio" sections.
 
 # Preparation
 
