@@ -1,0 +1,195 @@
+---
+title: "Case study 1"
+output:
+  html_notebook: default
+  html_document: default
+---
+
+In this case study, we are going to analyze some height and weight measurements of children at birth. We are going to:
+
+* Read the data into R
+* Tidy the data with `tibble` and `dplyr`
+* Plot the data with `ggplot2`
+* Fit a linear model to the data with `lm`
+
+This first case study is very basic, so the choice of hypothesis and modelling decisions may be somewhat contrived, but we are just learning for now.
+
+First, we install some packages we will need, if we don't have them installed already. The "tidyverse" package installs several packages in the "tidyverse" ecosystem, including "tibble", "readr" and "ggplot2".
+
+```{r eval=FALSE}
+install.packages('tidyverse')  # Installs several packages from the tidyverse ecosystem.
+install.packages('magrittr')
+install.packages('devtools')
+```
+
+Next, we load the packages we need.
+
+```{r}
+library(readxl)  # Reading Excel files.
+library(tibble)  # The "tibble" datastructure.
+library(dplyr)  # Working with the tibble datastructure.
+library(ggplot2)  # Plotting.
+library(magrittr)  # Need this for the %>% operator.
+library(devtools)  # For printing the session info at the end of the notebook.
+```
+
+# Read and pre-process data
+
+First we read the data from an Excel file. Below, we pass the relative path to the `read_xlsx()` function; in this case, the file is in our current working directory.
+
+```{r}
+data = read_xlsx("weight_height_data.xlsx")
+```
+
+The `read_xlsx()` function reads the Excel file and stores the data in a tibble object which we name `data`. The data is stored in the memory of the computer, and any changes made to `data` are only stored in memory. If you want to save the changes you make to the data, write the data to disk using, for example, the `write_csv()` function.
+
+Below, we use the `head()` function to inspect the top rows of the data. We also see the column names (such as "Gender" and "Date of birth") and the data type (such as `<chr>` and `<S3: POSIXct>`). Note that the `<S3: POSIXct>` data type means that "Date of birth" is stored as a kind of "datetime" object, while the other dates in the data, "Exam_day1" and "Exam_day2", are not; this is because the dates are formatted differently and R only recognized the formatting of "Date of birth" and automatically converted the date.
+
+
+```{r}
+head(data)
+```
+
+While these column names are intuitive, they are somewhat cumbersome to write (and we will be writing them a lot). So let's change the names using the `rename()` function. Note that we could use the syntax `rename(data, "new variable name" = "old variable name")`, but instead we are using the syntax `data %>% rename("new variable name" = "old variable name")`, where `%>%` is the *pipe* operator from the `magrittr` package.
+
+```{r}
+data = data %>% rename("ID" = "Identification number", "birth" = "Date of birth", "gender" = "Gender",
+              "w0" = "Weight_birth", "h0" = "Height_birth", "exam1" = "Exam_day1", "h1" = "Height_1",
+              "w1" = "Weight_1", "exam2" = "Exam_day2", "h2" = "Height_2", "w2" = "Weight_2")
+```
+
+Let's inspect the data one more time with the new column names.
+
+```{r}
+head(data)
+```
+
+We are not going to use all of the columns in the data, so we drop all the unused columns. We do this using the `select()` function, supplying the names of the columns we want to retain. 
+
+```{r}
+# Subset the columns in the data.
+data = data %>% select("w0", "h0")
+head(data)
+```
+
+
+# Exploratory data analysis
+
+In this section, we will visualize the data, in order to get an overview of the data, to possibly pre-process the data further if necessary. For this first case study, we will make a histogram and a QQ-plot of each of our variables.
+
+First, however, let's quickly look at some summary stats for the data, using the `summary()` function. Most notably, we see that the height variable has one NA value, that is, there is missing data for one individual.
+
+```{r}
+summary(data)
+```
+
+We use `ggplot2` to plot our data. The `ggplot(data, aes(w0))` statement below tells R that we want to plot the `w0` variable in the `data` dataset. Then we further say that we want to make a histogram out of this data with 10 bins. We make a title for the plot as well. Note that we simply "add" more functionality on top of the plot with the `+` operator.
+
+```{r fig.width=10, fig.height=5}
+ggplot(data, aes(w0)) +
+  geom_histogram(bins=10) +
+  ggtitle('Histogram of birth weight')
+```
+
+We do the same for the height variable, using 20 bins. The function will not know how to deal with the NA value, and will give us a warning if we pass it NA values. To ignore this warning we use the `na.rm=TRUE` argument.
+
+```{r fig.width=10, fig.height=5}
+ggplot(data, aes(h0)) +
+  geom_histogram(na.rm=TRUE, bins=20) +
+  ggtitle('Histogram of height at birth')
+```
+
+In the histograms above, the data seems reasonably normally distributed, but with some potential outliers. Most notably, there is one individual with high height value, and it turns out this value is 99.9 cm. Now, if we use a bit of common sense we can safely say we can not trust this observation, there's no way there is a newborn that is a meter high.
+
+Below, we remove this outlier using the `filter()` fuction, passing it a logical expression that says which observations to keep. We only want to remove the observation with `h0 = 99.9`, so we just keep all with `h0 < 90`, but make sure to keep any NA values. So we are saying "keep the row if h0 is less than 90 OR if h0 is NA".
+
+```{r}
+# Remove observation with h0 = 99.9, but make sure to keep NA values.
+data = data %>% filter(h0 < 90 | is.na(h0))
+```
+
+There are other potential outliers we could remove, but we will stop there for now.
+
+Next, we are going to make QQ-plots of our variables. The QQ-plot is a good way to check whether data is normally distributed. It computes theoretical quantiles based on summary statistics of the data and assuming it is normally distributed, and then compares these with the actual quantiles. The closer the points match the QQ-line, the more accurately the normal distribution represents the data.
+
+Below we use `stat_qq()` to add the points, representing the theoretical and actual ("sample") quantiles, and `stat_qq_line()` to add the QQ-line, ignoring NA values with `na.rm=TRUE`. Note that we pass the variable to `ggplot()` as `aes(sample=w0)` this time, as the `stat_qq()` and `stat_qq_line()` functions will look in this keyword for the data.
+
+Note that the zig-zag artifact in the plots is just due to the measurements being rounded off.
+
+Both variables seem to be quite closely approximated by a normal distirbution, as most of the points follow the QQ-line quite closely. The potential outliers at the end ranges veer off from the normal distribution, however.
+
+
+```{r fig.width=10, fig.height=5}
+ggplot(data, aes(sample=w0)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  ggtitle('QQ-plot of birth weight')
+```
+
+
+```{r fig.width=10, fig.height=5}
+ggplot(data, aes(sample=h0)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  ggtitle('QQ-plot of height at birth')
+```
+
+
+## Scatterplots
+
+We want to fit a linear regression model between `w0` and `h0`. To assess the feasibility of this model, we are going to explore the data via a scatterplot of these two variables. We pass two variables to `ggplot()`, as `aes(w0, h0)`, and `geom_point()` will plot the first varible on the x-axis and the second on the y-axis.
+
+A linear regression between these variables seems quite feasible, as there seems to be a close relationship of a linear nature. However, in this plot our potential outliers have become glaringly obvious, and will throw our linear regression in the next section off a bit.
+
+```{r fig.width=10, fig.height=5}
+ggplot(data, aes(w0, h0)) +
+  geom_point(na.rm=TRUE) +
+  ggtitle("Scatterplot of height and weight at birth") + xlab("Weight (grams)") + ylab("Height (cm)")
+```
+
+# Modelling
+
+We want to fit a linear model between the response $y$ (height at birth) and the explanatory variable $x$ (the weight at birth), with intercept $\alpha$, slope $\beta$, and assuming normally distributed noise $\epsilon$.
+
+\[
+y = \beta X + \alpha + \epsilon
+\]
+
+We use the `lm()` function to fit the linear model. We pass it the data, and a formula relating our variables of interest, and in this case, using the `~` character, we relate to R that we want a linear model of the type we have written above. R will then build the model on the data we pass it.
+
+```{r}
+model1 = lm(h0 ~ w0, data=data)
+```
+
+We use the `summary()` function to print some summary statistics for the model fit, such as the distribution of residuals, the fitted coefficients and their standard error, p-value ($Pr(>|t|)$), and so on. The estimate of `w0`, that is, the slope of the regression, means that for an increase in *one gram* in weight, we expect an increase of $2.371 \cdot 10^{-3}$ cm in height. We see that this estimate is statistically significant at 0.001.
+
+```{r}
+summary(model1)
+```
+
+We compute the confidence interval as $\alpha \pm 2 se$, that is, everything within two standard deviations of the estimate, using the `confint()` function. This is a hugely important additional model summary, as it tells us the range of values our estimate is likely to take given our data. If this interval is large, then our estimate isn't all that useful, and for example, we see that our interval does not include 0, so our data provides evidence for an additive effect.
+
+```{r}
+# Compute 95% confidence interval of the "w0" coefficient.
+confint(model1, "w0", 0.95)
+```
+
+To conclude this R notebook, we use the `devtools::sessions_info()` function to print information about this R session, including R version and packages loaded. This improves the reproducibility of this analysis, as without this information, package versions in particular, the code may not perform the way it is supposed to, and either produce incorrect results or not work at all.
+
+```{r}
+devtools::session_info()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
