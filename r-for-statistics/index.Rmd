@@ -73,7 +73,7 @@ install.packages('dplyr')
 
 Below is an overview of all the course notes.
 
-# | Description | Notebook
+Number | Description | Notebook
 ---|---|---
 1.1 | Reading data, plotting, and t test. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study1.nb.html)
 1.2 | Linear regression and more plotting. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study2.nb.html)
