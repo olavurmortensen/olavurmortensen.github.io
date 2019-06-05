@@ -1,0 +1,145 @@
+---
+title: "Mouse weight case study"
+output:
+  html_notebook: default
+  html_document: default
+---
+
+In this case study, we will again be looking into the bodyweight of mice, but this time we will include the sex variable. Our hypothesis is that both of our explanatory variables, diet and sex, have an effect on our response, weight, so it will be interesting to analyse these variables jointly.
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+# Read and pre-process data
+
+Assuming we have already downloaded the data in the previous case study, we simply import it.
+
+```{r}
+mice = read_csv('mice_pheno.csv')
+```
+
+We simplify the names, as last time.
+
+```{r}
+# Change column names.
+mice = mice %>% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodyweight')
+```
+
+# Exploratory data analysis
+
+First, let's calculate the mean weight of the mice stratefied by diet and sex. We stratify the observations using the `group_by()` function, providing the variables we want to group by. The `summarize()` function makes calculations based on the groups, and the results are stored in a tibble together with the `diet` and `sex` variables. We also count the number of samples in each group with the `n()` function.
+
+
+```{r}
+mice %>% group_by(diet, sex) %>%
+  summarize(mean=mean(weight, na.rm=TRUE), samples=n())
+```
+
+Let's plot the distribution of the data, as in the previous case studies, with box plots, histograms, and QQ-plots. This time, we've used `facet_grid()` to group the observations with respect to both diet and sex, and arranged the plots in rows and columns.
+
+```{r fig.width=8, fig.height=6}
+ggplot(mice, aes(weight)) +
+  geom_histogram(na.rm=TRUE, bins=15) +
+  labs(title='Histogram of weight grouped by diet and sex') +
+  facet_grid(rows=vars(diet), cols=vars(sex))
+```
+
+We make a box plot as in the previous case study, but use `facet_grid()` to group in terms of sex as well.
+
+```{r fig.width=8, fig.height=5}
+ggplot(mice, aes(x=diet, y=weight)) +
+  geom_boxplot(na.rm=TRUE) +
+  labs(x='Diet', y='Weight', title='Box plot of weight grouped by diet and sex') +
+  facet_grid(~ sex)
+```
+
+Similarly, we make QQ-plots.
+
+```{r fig.width=8, fig.height=6}
+ggplot(mice, aes(sample=weight)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  labs(title='QQ-plot of weight grouped by diet and sex') +
+  facet_grid(rows=vars(diet), cols=vars(sex))
+```
+
+On thing that's very interesting here it that it seems more reasonably now to treat the groups as normally distributed, as the lower tails are not as heavy as before. The box plots in a very illustrative way indicate that both the diet and sex have an effect on weight.
+
+# Modelling
+
+We already know, from the previous case study, that diet has an effect on weight, and have strong indications that sex does as well.
+
+We want to fit a linear model between the response $y$ (weight) and the explanatory variables $X$ (diet and sex), with intercept $\alpha$, slope $\beta$, and assuming normally distributed noise $\epsilon$.
+
+\[
+y = \beta X + \alpha + \epsilon
+\]
+
+We do this using the `lm()` function, passing it the data, and a formula relating our variables of interest, and in this case, using the `~` character, we relate to R that we want a linear model of the type we have written above. R will then build the model on the data we pass it.
+
+First, we try a model with both variables but no interactions, using the formula `weight ~ diet + sex`. We use the `summary()` function to get some useful information about the model fit.
+
+```{r}
+model1 = lm(weight ~ diet + sex, data=mice)
+summary(model1)
+```
+
+At a glance, this model looks good. Let's try to fit an interaction between the two variables. Note that the expression `weight ~ diet * sex` is equivalent to `weight ~ diet + sex + diet:sex`, where `diet:sex` is the interaction term.
+
+```{r}
+model2 = lm(weight ~ diet * sex, data=mice)
+summary(model2)
+```
+
+The `diethf` and `sexM` estimates are significant at 0.1%, and although the `diethf:sexM` term has a much lower p-value than the others, it is still significant at 5%.
+
+Note that `lm()` ignored observations with missing data.
+
+The estimates for the coefficients should be understood the following way. The `diethf` estimate indicates that the high-fat group is 2.3755 units of measurement heavier than the chow group. The `sexM` estimate says that the males are 7.0504 units of measurement heavier than the females. The interaction term, `diethf:sexM` indicates that the mice that are *both* male *and* fed a high-fat diet are an additional 1.5086 units of measurement heavier.
+
+Let's check the 95% confidence interval for these measurements. We do this using the `confint()` function, providing the model, a list of estimates, and the desired percentile. It seems it is uncertain whether the interaction term has any meaningful contribution to the mice weights.
+
+```{r}
+confint(model2, c('diethf', 'sexM', 'diethf:sexM'), 0.95)
+```
+
+
+The last thing we want to do before we wrap this case study up is do a little bit of model inspection by studying the residuals. We assume that the error is normally distributed with zero mean, $\epsilon \in N(0, \sigma_{\epsilon})$. If this assumption is violated, then the model is a poor fit on the data, regardless of how impressive our p-values are.
+
+Let's use the `summary()` function to get some quick summary stats. Turns out the residuals' mean is very close to zero, but has a high variance.
+
+```{r}
+residuals = model2$residuals
+summary(residuals, digits=22)
+```
+
+Because we can't see the significant digits in the `summary()` output above, let's calculate the mean again.
+
+```{r}
+mean(residuals)
+```
+
+From the box plot and QQ-plot below, it seems that the distribution of the residuals has a long upper tail, but seems fairly normally distributed.
+
+```{r fig.width=5, fig.height=5}
+temp = tibble(residuals=residuals)
+ggplot(temp, aes(x='', residuals)) +
+  geom_boxplot(na.rm=TRUE) +
+  labs(x='', y='Residuals', title='Box plot of residuals')
+```
+
+
+```{r fig.width=5, fig.height=4}
+temp = tibble(residuals=residuals)
+ggplot(temp, aes(sample=residuals)) +
+  stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
+  labs(x='theoretical', y='sample', title='QQ-plot')
+```
+
+We have fit a linear model to the mice weights with the diet and sex variables, including an interaction term. We have shown that assumptions about normal distributioned data holds. We have inspected the resulting models through p-values and confidence intervals of coefficient estimates, as well as the distribution of the residuals. We can safely conclude that both diet and gender has an effect on the weight of this mouse population, but it is still uncertain whether the interaction between these variables has an effect.
+
+```{r}
+devtools::session_info()
+```

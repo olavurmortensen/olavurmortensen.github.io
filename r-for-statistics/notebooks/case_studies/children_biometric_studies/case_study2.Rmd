@@ -7,10 +7,14 @@ output:
 
 In this case study, we will calculate each individual's BMI from their weight and height measurements at three timepoints, at birth and at two exam days where the children are about 2 and 9 years of age.
 
-We need one more package for this case study, which we will install.
+We will also need the following script to make some of the plots in this notebook.
+
+> Multiplot:
+>
+> http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
 
 ```{r}
-install.packages("Rmisc")  # For the "multiplot" function.
+source("multiplot.R")
 ```
 
 And then we load some packages we will need.
@@ -20,7 +24,6 @@ library(readxl)  # Reading Excel files.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
 library(ggplot2)  # Plotting.
-library(Rmisc)  # For the "multiplot" function.
 library(magrittr)  # Need this for the %>% operator.
 library(devtools)  # For printing the session info at the end of the notebook.
 ```
@@ -73,7 +76,7 @@ head(data)
 
 Let's try making box plots of the BMI variables and inspect their distributions.
 
-As usual, we igonre NA values with `na.rm=TRUE`, but this time we want to count the number of NA values and include this number in some plot text. We count the NAs by "pulling" the `bmi0` variable from the data, checking which observations have are NA, and summing these up. Alternatively, we could have done this using the `summarize()` function.
+As usual, we ignore NA values with `na.rm=TRUE`, but this time we want to count the number of NA values and include this number in some plot text. We count the NAs by "pulling" the `bmi0` variable from the data, checking which observations have are NA, and summing these up. Alternatively, we could have done this using the `summarize()` function.
 
 ```{r}
 # Count NAs in bmi0.
@@ -134,9 +137,22 @@ summary(model1)
 confint(model1, "bmi0", 0.95)
 ```
 
-The last thing we want to do befor we wrap this case study up is do a little bit of model inspection by plotting the residuals. We assume that the error is normally distributed with zero mean, $\epsilon \in N(0, \sigma_{\epsilon})$. If this turns out to not be the case, then the model is a poor fit on the data, regardless of how impressive our p-values are.
+Next we'll make a scatterplot of `bmi0` against `bmi1`, and include the regression line. We can draw a line in `ggplot2` with the `geom_abline()` function, supplying the intercept and the slope of the line. The intercept and slope of the line are our coefficients from the linear model above, where the slope corresponds to our `bmi0` estimate. We see there are some outliers that the model fits poorly, but in general the fit seems intuitively sensible.
 
-First of all, let's check what the mean of the residuals is. Turns out it's very close to zero, but has a high variance.
+```{r fig.width=8, fig.height=5}
+# Get the intercept and slope of the regression line from the model fit.
+intercept = model1$coefficients[1]
+slope = model1$coefficients[2]
+# Make scatterplot and regression line.
+ggplot(data, aes(bmi0, bmi1)) +
+  geom_point(na.rm=TRUE) +
+  geom_abline(intercept=intercept, slope=slope) +
+  labs(title="Regression line of linear model", x='BMI at birth', y='BMI at exam day 1')
+```
+
+The last thing we want to do before we wrap this case study up is do a little bit of model inspection by plotting the residuals. We assume that the error is normally distributed with zero mean, $\epsilon \in N(0, \sigma_{\epsilon})$. If this assumption is violated, then the model is a poor fit on the data, regardless of how impressive our p-values are.
+
+Let's use the `summary()` function to get some quick summary stats. Turns out the residuals' mean is very close to zero, but has a high variance.
 
 ```{r}
 residuals = model1$residuals
@@ -149,7 +165,9 @@ Because we can't see the significant digits in the `summary()` output above, let
 mean(residuals)
 ```
 
-Below, we plot the residuals with a boxplot, a qq-plot and a histogram. The data is so obscured by the outliers that it is difficult to say whether it is reasonable to accept them as normally distributed. Therefore, we will try to deal with these outliers in our next case study.
+Below, we plot the residuals with a boxplot, a qq-plot and a histogram. This time, we have made three plots in one window, using the `multiplot()` function from the `multiplot.R` script we downloaded. We get the handle of each plot as `p1`, `p2` and `p3`, and then specify that we want the plots in three columns (in this case this puts all three plots in one row). We've also added the `tag` label to the plots.
+
+The data is so obscured by the outliers that it is difficult to say whether it is reasonable to accept them as normally distributed. Therefore, we will try to deal with these outliers in our next case study.
 
 Of course, we could do a similar analysis for BMI at the second exam day, at age of about 9, but we will refrain from going through the same process one more time.
 

@@ -45,7 +45,6 @@ The `read_xlsx()` function reads the Excel file and stores the data in a tibble 
 
 Below, we use the `head()` function to inspect the top rows of the data. We also see the column names (such as "Gender" and "Date of birth") and the data type (such as `<chr>` and `<S3: POSIXct>`). Note that the `<S3: POSIXct>` data type means that "Date of birth" is stored as a kind of "datetime" object, while the other dates in the data, "Exam_day1" and "Exam_day2", are not; this is because the dates are formatted differently and R only recognized the formatting of "Date of birth" and automatically converted the date.
 
-
 ```{r}
 head(data)
 ```
@@ -88,7 +87,7 @@ We use `ggplot2` to plot our data. The `ggplot(data, aes(w0))` statement below t
 ```{r fig.width=10, fig.height=5}
 ggplot(data, aes(w0)) +
   geom_histogram(bins=10) +
-  ggtitle('Histogram of birth weight')
+  labs(title='Histogram of birth weight')
 ```
 
 We do the same for the height variable, using 20 bins. The function will not know how to deal with the NA value, and will give us a warning if we pass it NA values. To ignore this warning we use the `na.rm=TRUE` argument.
@@ -96,7 +95,7 @@ We do the same for the height variable, using 20 bins. The function will not kno
 ```{r fig.width=10, fig.height=5}
 ggplot(data, aes(h0)) +
   geom_histogram(na.rm=TRUE, bins=20) +
-  ggtitle('Histogram of height at birth')
+  labs(title='Histogram of height at birth')
 ```
 
 In the histograms above, the data seems reasonably normally distributed, but with some potential outliers. Most notably, there is one individual with high height value, and it turns out this value is 99.9 cm. Now, if we use a bit of common sense we can safely say we can not trust this observation, there's no way there is a newborn that is a meter high.
@@ -122,14 +121,14 @@ Both variables seem to be quite closely approximated by a normal distirbution, a
 ```{r fig.width=10, fig.height=5}
 ggplot(data, aes(sample=w0)) +
   stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
-  ggtitle('QQ-plot of birth weight')
+  labs(title='QQ-plot of birth weight')
 ```
 
 
 ```{r fig.width=10, fig.height=5}
 ggplot(data, aes(sample=h0)) +
   stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
-  ggtitle('QQ-plot of height at birth')
+  labs(title='QQ-plot of height at birth')
 ```
 
 
@@ -142,7 +141,7 @@ A linear regression between these variables seems quite feasible, as there seems
 ```{r fig.width=10, fig.height=5}
 ggplot(data, aes(w0, h0)) +
   geom_point(na.rm=TRUE) +
-  ggtitle("Scatterplot of height and weight at birth") + xlab("Weight (grams)") + ylab("Height (cm)")
+  labs(title="Scatterplot of height and weight at birth", x="Weight (grams)", y="Height (cm)")
 ```
 
 # Modelling
@@ -177,7 +176,6 @@ To conclude this R notebook, we use the `devtools::sessions_info()` function to 
 ```{r}
 devtools::session_info()
 ```
-
 
 
 

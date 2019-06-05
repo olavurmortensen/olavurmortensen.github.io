@@ -46,7 +46,18 @@ You need to bring a laptop to the course, and before you arrive you need to inst
 
 > Download and install RStudio Desktop with the Open Source License:
 > 
-> https://www.rstudio.com/products/rstudio/download/
+> https://www.rstudio.com
+
+
+> Download the newest version of R:
+>
+> https://www.r-project.org/
+
+If you get stuck installing R and/or RStudio, a quick [Google search](http://lmgtfy.com/?q=how+to+install+r+and+rstudio) will give some helpful resources, including:
+
+* https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu
+* https://courses.edx.org/courses/UTAustinX/UT.7.01x/3T2014/56c5437b88fa43cf828bff5371c6a924/
+
 
 After installing RStudio, try installing this package. Hopefully, the package will be installed on your system without problems.
 
@@ -67,3 +78,5 @@ Day/lecture | Description | Lecture notes
 1/1 | How the R commandline works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_r.nb.html)
 1/2 | How the RStudio interface works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_rstudio.nb.html)
 1/3 | How to work with data structures | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/data_handling.nb.html)
+
+
