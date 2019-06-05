@@ -8,9 +8,12 @@ output:
 In this case study, we will again be looking into the bodyweight of mice, but this time we will include the sex variable. Our hypothesis is that both of our explanatory variables, diet and sex, have an effect on our response, weight, so it will be interesting to analyse these variables jointly.
 
 ```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
+library(readr)  # For reading data.
+library(tibble)  # The "tibble" datastructure.
+library(dplyr)  # Working with the tibble datastructure.
+library(ggplot2)  # Plotting.
+library(magrittr)  # Need this for the %>% (pipe) operator.
+library(devtools)  # For printing the session info at the end of the notebook.
 ```
 
 # Read and pre-process data

@@ -27,6 +27,7 @@ install.packages('devtools')
 Next, we load the packages we need.
 
 ```{r}
+library(readr)  # For reading data.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
 library(ggplot2)  # Plotting.

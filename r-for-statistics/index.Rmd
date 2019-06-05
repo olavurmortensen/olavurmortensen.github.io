@@ -12,8 +12,8 @@ output:
   * [Reading material](#Reading-material)
   * [Installing R/Rstudio](#Installing-RRstudio)
 - [Course overview](#Course-overview)
-- [Course notes](#Course-notes)
 - [After the course](#After-the-course)
+- [Course notes](#Course-notes)
 
 <!-- tocstop -->
 
@@ -73,10 +73,7 @@ install.packages('dplyr')
 
 Below is an overview of all the course notes.
 
-Day/lecture | Description | Lecture notes
+# | Description | Notebook
 ---|---|---
-1/1 | How the R commandline works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_r.nb.html)
-1/2 | How the RStudio interface works | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/basic_rstudio.nb.html)
-1/3 | How to work with data structures | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/data_handling.nb.html)
-
-
+1.1 | Reading data, plotting, and t test. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study1.nb.html)
+1.2 | Linear regression and more plotting. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study2.nb.html)
