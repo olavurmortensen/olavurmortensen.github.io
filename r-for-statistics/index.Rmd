@@ -25,12 +25,12 @@ Attendees of this course should read this page carefully, in particular the "Pre
 
 ## Reading material
 
-Before the start of the course, read the "R for Beginners" PDF. This short introduction to R by Emmanuel Paradis is only 76 pages and available free of charge.
-
+Before the start of the course, read the "R for Beginners" PDF. This short introduction to R by Emmanuel Paradis is only 76 pages and available free of charge. It is important that you read the material, as if you don't you may find it difficult, or impossible, to follow the course.
+ 
 > "R for Beginners" by Emmanuel Paradis:
 >
 > https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
-
+ 
 We want you to understand the concepts layed out in this book to the best of your abilities, but the book does cover some more advanced material that we do not expect you to understand fully. In general, we want you to understand:
 
 * How the R command-line works
@@ -38,26 +38,28 @@ We want you to understand the concepts layed out in this book to the best of you
 * What functions are for and how to use them
 * Basic data types like strings, lists, and especially *data frames*
 
-Read chapters 1 through 3 carefully, and make sure you understand all the concepts to the best of your ability. Read through chapters 4 through 6 as well, and make sure you understand the basics of these chapters, but don't get caught up in the details if you are having great difficulty with the subject.
+Chapters 1 through 3 are required reading. Read these chapters carefully, and make sure you understand all the concepts to the best of your ability.
+
+Although chapters 4 through 6 are not required reading, you might find chapter 6 useful and interesting. If you would like to learn more about the programmatic aspects of R, including loops, conditional execution, and writing functions, you can attempt this chapter. We do not expect you to grasp the content of chapter 6.
+
+We recommend that you have R open while you read, and try some of the commands to improve your understanding of the material in the book.
 
 ## Installing R/Rstudio
 
 You need to bring a laptop to the course, and before you arrive you need to install R and Rstudio. Download and install the free desktop version of RStudio. R and RStudio are available for Windows, Mac and Linux.
 
+> Download and install the newest version of R:
+>
+> https://www.r-project.org/
+
 > Download and install RStudio Desktop with the Open Source License:
 > 
 > https://www.rstudio.com
-
-
-> Download the newest version of R:
->
-> https://www.r-project.org/
 
 If you get stuck installing R and/or RStudio, a quick [Google search](http://lmgtfy.com/?q=how+to+install+r+and+rstudio) will give some helpful resources, including:
 
 * https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu
 * https://courses.edx.org/courses/UTAustinX/UT.7.01x/3T2014/56c5437b88fa43cf828bff5371c6a924/
-
 
 After installing RStudio, try installing this package. Hopefully, the package will be installed on your system without problems.
 
@@ -68,6 +70,26 @@ install.packages('dplyr')
 # Course overview
 
 # After the course
+
+First and foremost, our advice to you when the course is over is to start analysing data, writing scripts and notebooks, and making projects in R. Statistics and programming is something you primarily learn by experience. Here follow a few book ideas you can try if you want to read more.
+
+"Data Analysis for the Life Sciences" covers statistics using R, and is very practical and clear. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.
+
+> "Data Analysis for the Life Sciences" by Rafael A. Irizarry and Michael I. Love
+>
+> https://leanpub.com/dataanalysisforthelifesciences
+
+"Hands-on Programming with R" is one of many examples of books you could read if you want to learn more advanced subjects, including learning more programmatic aspects of R.
+
+> "Hands-On Programming with R: Write Your Own Functions and Simulations" by Garrett Grolemund
+>
+> https://rstudio-education.github.io/hopr/
+
+"R for Data Science" covers topics similar to this course, including plotting with `ggplot2` and data manipulation with `dplyr`.
+
+> "R for Data Science" by Garrett Grolemund andHadley Wickham
+>
+> https://r4ds.had.co.nz/
 
 # Course notes
 
