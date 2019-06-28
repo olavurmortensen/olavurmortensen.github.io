@@ -252,30 +252,64 @@ $(document).ready(function () {
 <li><a href="#Installing-RRstudio">Installing R/Rstudio</a></li>
 <li><a href="#Course-overview">Course overview</a></li>
 <li><a href="#After-the-course">After the course</a></li>
-<li><a href="#Course-notes">Course notes</a></li>
+<li><a href="#Case-studies">Case studies</a></li>
 </ul>
 <!-- tocstop -->
 <p>This website concerns the “R for Statistics” PhD course at the University of the Faroe Islands. Read more about the course here: <a href="https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/" class="uri">https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/</a></p>
+<p>In this course, we learn how to use R and RStudio for statistics. We do not teach statistics in this course, and assume that participants are at least somewhat familiar with statistics. The course is very practical, and is based on short case studies where we go through four basic steps of statistics, loading, cleaning, plotting, and modelling data.</p>
 <p>Attendees of this course should read this page carefully, in particular the “Preparation” section, including the “Reading material” and “Installing R/Rstudio” sections.</p>
 <div id="preparation" class="section level1">
 <h1>Preparation</h1>
 <div id="reading-material" class="section level2">
 <h2>Reading material</h2>
-<p>Before the start of the course, read the “R for Beginners” PDF. This short introduction to R by Emmanuel Paradis is only 76 pages and available free of charge. It is important that you read the material, as if you don’t you may find it difficult, or impossible, to follow the course.</p>
+<p>The course will be very hands-on, learning how to do actual statistical analyses in R, but we want to to understand some basic R concepts before the start of the course. To that end, you should read parts 1 and 2, that is, chapters 1 through 8, of “Hands-on Programming with R”. It is important that you read the material, as if you don’t you may find it difficult, or impossible, to follow the course.</p>
 <blockquote>
-<p>“R for Beginners” by Emmanuel Paradis:</p>
-<p><a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf" class="uri">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a></p>
+<p>“Hands-On Programming with R: Write Your Own Functions and Simulations” by Garrett Grolemund</p>
+<p><a href="https://rstudio-education.github.io/hopr/" class="uri">https://rstudio-education.github.io/hopr/</a></p>
 </blockquote>
-<p>We want you to understand the concepts layed out in this book to the best of your abilities, but the book does cover some more advanced material that we do not expect you to understand fully. In general, we want you to understand:</p>
+<p>We want you to understand the concepts layed out in these chapters to the best of your abilities. In general, we want you to understand:</p>
 <ul>
-<li>How the R command-line works</li>
 <li>How to use arithmetic and variables in R</li>
-<li>What functions are for and how to use them</li>
-<li>Basic data types like strings, lists, and especially <em>data frames</em></li>
+<li>How functions work and how to use them</li>
+<li>Basic data types like strings, lists, vectors and especially <em>data frames</em></li>
 </ul>
-<p>Chapters 1 through 3 are required reading. Read these chapters carefully, and make sure you understand all the concepts to the best of your ability.</p>
-<p>Although chapters 4 through 6 are not required reading, you might find chapter 6 useful and interesting. If you would like to learn more about the programmatic aspects of R, including loops, conditional execution, and writing functions, you can attempt this chapter. We do not expect you to grasp the content of chapter 6.</p>
-<p>We recommend that you have R open while you read, and try some of the commands to improve your understanding of the material in the book.</p>
+<p>We recommend that you have R open while you read, and try some of the commands to improve your understanding of the material in the book. The book has short excercises, but don’t worry if you don’t know how to solve all of these.</p>
+<p>To help you get the most out of your reading, here’s what you should focus on when reading the chapters:</p>
+<ul>
+<li>Part 1 (chapters 1-3):
+<ul>
+<li>Read carefully, understand to the best of your abilities.</li>
+</ul></li>
+<li>Part 2 (chapters 4-8):
+<ul>
+<li>The material in these chapters is important as well. Don’t get caught up in details though, if you’re having great trouble with something, move on.</li>
+</ul></li>
+<li>Chapter 2.1: The R User Interface
+<ul>
+<li>Don’t worry if you don’t fully grasp it, we will cover it in class.</li>
+</ul></li>
+<li>Chapter 2.4: Writing Your Own Functions
+<ul>
+<li>We don’t expect you to be able to write your own functions.</li>
+</ul></li>
+<li>Chapter 3.2: Getting Help with Help Pages
+<ul>
+<li>We will talk more about getting help in class.</li>
+</ul></li>
+<li>Chapter 5.1.5: Complex and raw
+<ul>
+<li>Skip</li>
+</ul></li>
+<li>Chapter 5.3-5.5
+<ul>
+<li>Skim</li>
+<li>Skim these chapters. Read them, but don’t worry if you don’t fully understand their content.</li>
+</ul></li>
+<li>Chapter 8: Environments
+<ul>
+<li>Skip.</li>
+</ul></li>
+</ul>
 </div>
 <div id="installing-rrstudio" class="section level2">
 <h2>Installing R/Rstudio</h2>
@@ -299,19 +333,47 @@ $(document).ready(function () {
 </div>
 <div id="course-overview" class="section level1">
 <h1>Course overview</h1>
+<p>An overview of the course program is in the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th><strong>Tuesday</strong></th>
+<th><strong>Wednesday</strong></th>
+<th><strong>Friday</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8:30-11:30</td>
+<td>Introduction and RStudio</td>
+<td>Case study 2</td>
+<td>Case study 4</td>
+</tr>
+<tr class="even">
+<td>11:30-12:30</td>
+<td>Lunch</td>
+<td>Lunch</td>
+<td>Lunch</td>
+</tr>
+<tr class="odd">
+<td>12:30-15:30</td>
+<td>Case study 1</td>
+<td>Case study 3</td>
+<td>Workshop and exam</td>
+</tr>
+</tbody>
+</table>
+<p>Every case study session will include a small hands-on exercise session, a summary, and a coffee break.</p>
 </div>
 <div id="after-the-course" class="section level1">
 <h1>After the course</h1>
 <p>First and foremost, our advice to you when the course is over is to start analysing data, writing scripts and notebooks, and making projects in R. Statistics and programming is something you primarily learn by experience. Here follow a few book ideas you can try if you want to read more.</p>
+<p>You can of course continue reading “Hands-on Programming with R”, as part 3 contains some more advanced material covering, among other things, more programmatic aspects of R.</p>
 <p>“Data Analysis for the Life Sciences” covers statistics using R, and is very practical and clear. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.</p>
 <blockquote>
 <p>“Data Analysis for the Life Sciences” by Rafael A. Irizarry and Michael I. Love</p>
 <p><a href="https://leanpub.com/dataanalysisforthelifesciences" class="uri">https://leanpub.com/dataanalysisforthelifesciences</a></p>
-</blockquote>
-<p>“Hands-on Programming with R” is one of many examples of books you could read if you want to learn more advanced subjects, including learning more programmatic aspects of R.</p>
-<blockquote>
-<p>“Hands-On Programming with R: Write Your Own Functions and Simulations” by Garrett Grolemund</p>
-<p><a href="https://rstudio-education.github.io/hopr/" class="uri">https://rstudio-education.github.io/hopr/</a></p>
 </blockquote>
 <p>“R for Data Science” covers topics similar to this course, including plotting with <code>ggplot2</code> and data manipulation with <code>dplyr</code>.</p>
 <blockquote>
@@ -319,9 +381,9 @@ $(document).ready(function () {
 <p><a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
 </blockquote>
 </div>
-<div id="course-notes" class="section level1">
-<h1>Course notes</h1>
-<p>Below is an overview of all the course notes.</p>
+<div id="case-studies" class="section level1">
+<h1>Case studies</h1>
+<p>Below is an overview of all the case study notebooks.</p>
 <table>
 <thead>
 <tr class="header">
@@ -346,7 +408,7 @@ $(document).ready(function () {
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBmb3IgU3RhdGlzdGljcyIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKKipUYWJsZSBvZiBjb250ZW50czoqKgoKPCEtLSB0b2MgLS0+Ci0gW1ByZXBhcmF0aW9uXSgjUHJlcGFyYXRpb24pCiAgKiBbUmVhZGluZyBtYXRlcmlhbF0oI1JlYWRpbmctbWF0ZXJpYWwpCiAgKiBbSW5zdGFsbGluZyBSL1JzdHVkaW9dKCNJbnN0YWxsaW5nLVJSc3R1ZGlvKQotIFtDb3Vyc2Ugb3ZlcnZpZXddKCNDb3Vyc2Utb3ZlcnZpZXcpCi0gW0FmdGVyIHRoZSBjb3Vyc2VdKCNBZnRlci10aGUtY291cnNlKQotIFtDb3Vyc2Ugbm90ZXNdKCNDb3Vyc2Utbm90ZXMpCgo8IS0tIHRvY3N0b3AgLS0+CgpUaGlzIHdlYnNpdGUgY29uY2VybnMgdGhlICJSIGZvciBTdGF0aXN0aWNzIiBQaEQgY291cnNlIGF0IHRoZSBVbml2ZXJzaXR5IG9mIHRoZSBGYXJvZSBJc2xhbmRzLiBSZWFkIG1vcmUgYWJvdXQgdGhlIGNvdXJzZSBoZXJlOiBodHRwczovL3d3dy5zZXR1ci5mby9mby91dGJ1Z3Zpbmcvc3Rha2dyZWluYWxlc3R1ci9kZXBpbGluLWZ5cmktaGVpbHN1LW9nLWFsbWFubmFncmFuc2tpbmcvci1mb3Itc3RhdGlzdGljcy1iYXNpYy1jb3Vyc2UtaW4tdGhlLXN0YXRpc3RpY2FsLXByb2dyYW0tci1hbmQtcnN0dWRpby8KCkF0dGVuZGVlcyBvZiB0aGlzIGNvdXJzZSBzaG91bGQgcmVhZCB0aGlzIHBhZ2UgY2FyZWZ1bGx5LCBpbiBwYXJ0aWN1bGFyIHRoZSAiUHJlcGFyYXRpb24iIHNlY3Rpb24sIGluY2x1ZGluZyB0aGUgIlJlYWRpbmcgbWF0ZXJpYWwiIGFuZCAiSW5zdGFsbGluZyBSL1JzdHVkaW8iIHNlY3Rpb25zLgoKIyBQcmVwYXJhdGlvbgoKIyMgUmVhZGluZyBtYXRlcmlhbAoKQmVmb3JlIHRoZSBzdGFydCBvZiB0aGUgY291cnNlLCByZWFkIHRoZSAiUiBmb3IgQmVnaW5uZXJzIiBQREYuIFRoaXMgc2hvcnQgaW50cm9kdWN0aW9uIHRvIFIgYnkgRW1tYW51ZWwgUGFyYWRpcyBpcyBvbmx5IDc2IHBhZ2VzIGFuZCBhdmFpbGFibGUgZnJlZSBvZiBjaGFyZ2UuIEl0IGlzIGltcG9ydGFudCB0aGF0IHlvdSByZWFkIHRoZSBtYXRlcmlhbCwgYXMgaWYgeW91IGRvbid0IHlvdSBtYXkgZmluZCBpdCBkaWZmaWN1bHQsIG9yIGltcG9zc2libGUsIHRvIGZvbGxvdyB0aGUgY291cnNlLgogCj4gIlIgZm9yIEJlZ2lubmVycyIgYnkgRW1tYW51ZWwgUGFyYWRpczoKPgo+IGh0dHBzOi8vY3Jhbi5yLXByb2plY3Qub3JnL2RvYy9jb250cmliL1BhcmFkaXMtcmRlYnV0c19lbi5wZGYKIApXZSB3YW50IHlvdSB0byB1bmRlcnN0YW5kIHRoZSBjb25jZXB0cyBsYXllZCBvdXQgaW4gdGhpcyBib29rIHRvIHRoZSBiZXN0IG9mIHlvdXIgYWJpbGl0aWVzLCBidXQgdGhlIGJvb2sgZG9lcyBjb3ZlciBzb21lIG1vcmUgYWR2YW5jZWQgbWF0ZXJpYWwgdGhhdCB3ZSBkbyBub3QgZXhwZWN0IHlvdSB0byB1bmRlcnN0YW5kIGZ1bGx5LiBJbiBnZW5lcmFsLCB3ZSB3YW50IHlvdSB0byB1bmRlcnN0YW5kOgoKKiBIb3cgdGhlIFIgY29tbWFuZC1saW5lIHdvcmtzCiogSG93IHRvIHVzZSBhcml0aG1ldGljIGFuZCB2YXJpYWJsZXMgaW4gUgoqIFdoYXQgZnVuY3Rpb25zIGFyZSBmb3IgYW5kIGhvdyB0byB1c2UgdGhlbQoqIEJhc2ljIGRhdGEgdHlwZXMgbGlrZSBzdHJpbmdzLCBsaXN0cywgYW5kIGVzcGVjaWFsbHkgKmRhdGEgZnJhbWVzKgoKQ2hhcHRlcnMgMSB0aHJvdWdoIDMgYXJlIHJlcXVpcmVkIHJlYWRpbmcuIFJlYWQgdGhlc2UgY2hhcHRlcnMgY2FyZWZ1bGx5LCBhbmQgbWFrZSBzdXJlIHlvdSB1bmRlcnN0YW5kIGFsbCB0aGUgY29uY2VwdHMgdG8gdGhlIGJlc3Qgb2YgeW91ciBhYmlsaXR5LgoKQWx0aG91Z2ggY2hhcHRlcnMgNCB0aHJvdWdoIDYgYXJlIG5vdCByZXF1aXJlZCByZWFkaW5nLCB5b3UgbWlnaHQgZmluZCBjaGFwdGVyIDYgdXNlZnVsIGFuZCBpbnRlcmVzdGluZy4gSWYgeW91IHdvdWxkIGxpa2UgdG8gbGVhcm4gbW9yZSBhYm91dCB0aGUgcHJvZ3JhbW1hdGljIGFzcGVjdHMgb2YgUiwgaW5jbHVkaW5nIGxvb3BzLCBjb25kaXRpb25hbCBleGVjdXRpb24sIGFuZCB3cml0aW5nIGZ1bmN0aW9ucywgeW91IGNhbiBhdHRlbXB0IHRoaXMgY2hhcHRlci4gV2UgZG8gbm90IGV4cGVjdCB5b3UgdG8gZ3Jhc3AgdGhlIGNvbnRlbnQgb2YgY2hhcHRlciA2LgoKV2UgcmVjb21tZW5kIHRoYXQgeW91IGhhdmUgUiBvcGVuIHdoaWxlIHlvdSByZWFkLCBhbmQgdHJ5IHNvbWUgb2YgdGhlIGNvbW1hbmRzIHRvIGltcHJvdmUgeW91ciB1bmRlcnN0YW5kaW5nIG9mIHRoZSBtYXRlcmlhbCBpbiB0aGUgYm9vay4KCiMjIEluc3RhbGxpbmcgUi9Sc3R1ZGlvCgpZb3UgbmVlZCB0byBicmluZyBhIGxhcHRvcCB0byB0aGUgY291cnNlLCBhbmQgYmVmb3JlIHlvdSBhcnJpdmUgeW91IG5lZWQgdG8gaW5zdGFsbCBSIGFuZCBSc3R1ZGlvLiBEb3dubG9hZCBhbmQgaW5zdGFsbCB0aGUgZnJlZSBkZXNrdG9wIHZlcnNpb24gb2YgUlN0dWRpby4gUiBhbmQgUlN0dWRpbyBhcmUgYXZhaWxhYmxlIGZvciBXaW5kb3dzLCBNYWMgYW5kIExpbnV4LgoKPiBEb3dubG9hZCBhbmQgaW5zdGFsbCB0aGUgbmV3ZXN0IHZlcnNpb24gb2YgUjoKPgo+IGh0dHBzOi8vd3d3LnItcHJvamVjdC5vcmcvCgo+IERvd25sb2FkIGFuZCBpbnN0YWxsIFJTdHVkaW8gRGVza3RvcCB3aXRoIHRoZSBPcGVuIFNvdXJjZSBMaWNlbnNlOgo+IAo+IGh0dHBzOi8vd3d3LnJzdHVkaW8uY29tCgpJZiB5b3UgZ2V0IHN0dWNrIGluc3RhbGxpbmcgUiBhbmQvb3IgUlN0dWRpbywgYSBxdWljayBbR29vZ2xlIHNlYXJjaF0oaHR0cDovL2xtZ3RmeS5jb20vP3E9aG93K3RvK2luc3RhbGwrcithbmQrcnN0dWRpbykgd2lsbCBnaXZlIHNvbWUgaGVscGZ1bCByZXNvdXJjZXMsIGluY2x1ZGluZzoKCiogaHR0cHM6Ly93d3cuZGF0YWNhbXAuY29tL2NvbW11bml0eS90dXRvcmlhbHMvaW5zdGFsbGluZy1SLXdpbmRvd3MtbWFjLXVidW50dQoqIGh0dHBzOi8vY291cnNlcy5lZHgub3JnL2NvdXJzZXMvVVRBdXN0aW5YL1VULjcuMDF4LzNUMjAxNC81NmM1NDM3Yjg4ZmE0M2NmODI4YmZmNTM3MWM2YTkyNC8KCkFmdGVyIGluc3RhbGxpbmcgUlN0dWRpbywgdHJ5IGluc3RhbGxpbmcgdGhpcyBwYWNrYWdlLiBIb3BlZnVsbHksIHRoZSBwYWNrYWdlIHdpbGwgYmUgaW5zdGFsbGVkIG9uIHlvdXIgc3lzdGVtIHdpdGhvdXQgcHJvYmxlbXMuCgpgYGAKaW5zdGFsbC5wYWNrYWdlcygnZHBseXInKQpgYGAKCiMgQ291cnNlIG92ZXJ2aWV3CgojIEFmdGVyIHRoZSBjb3Vyc2UKCkZpcnN0IGFuZCBmb3JlbW9zdCwgb3VyIGFkdmljZSB0byB5b3Ugd2hlbiB0aGUgY291cnNlIGlzIG92ZXIgaXMgdG8gc3RhcnQgYW5hbHlzaW5nIGRhdGEsIHdyaXRpbmcgc2NyaXB0cyBhbmQgbm90ZWJvb2tzLCBhbmQgbWFraW5nIHByb2plY3RzIGluIFIuIFN0YXRpc3RpY3MgYW5kIHByb2dyYW1taW5nIGlzIHNvbWV0aGluZyB5b3UgcHJpbWFyaWx5IGxlYXJuIGJ5IGV4cGVyaWVuY2UuIEhlcmUgZm9sbG93IGEgZmV3IGJvb2sgaWRlYXMgeW91IGNhbiB0cnkgaWYgeW91IHdhbnQgdG8gcmVhZCBtb3JlLgoKIkRhdGEgQW5hbHlzaXMgZm9yIHRoZSBMaWZlIFNjaWVuY2VzIiBjb3ZlcnMgc3RhdGlzdGljcyB1c2luZyBSLCBhbmQgaXMgdmVyeSBwcmFjdGljYWwgYW5kIGNsZWFyLiBJdCBpcyBtb3JlIGdlYXJlZCB0b3dhcmQgcGVvcGxlIHdobyBrbm93IFIgYW5kIGFyZSB0cnlpbmcgdG8gbGVhcm5pbmcgc3RhdGlzdGljcywgcmF0aGVyIHRoYW4gcGVvcGxlIHRyeWluZyB0byBsZWFybiBSLCBidXQgaXMgbm9uZXRoZWxlc3MgdmVyeSB1c2VmdWwuCgo+ICJEYXRhIEFuYWx5c2lzIGZvciB0aGUgTGlmZSBTY2llbmNlcyIgYnkgUmFmYWVsIEEuIElyaXphcnJ5IGFuZCBNaWNoYWVsIEkuIExvdmUKPgo+IGh0dHBzOi8vbGVhbnB1Yi5jb20vZGF0YWFuYWx5c2lzZm9ydGhlbGlmZXNjaWVuY2VzCgoiSGFuZHMtb24gUHJvZ3JhbW1pbmcgd2l0aCBSIiBpcyBvbmUgb2YgbWFueSBleGFtcGxlcyBvZiBib29rcyB5b3UgY291bGQgcmVhZCBpZiB5b3Ugd2FudCB0byBsZWFybiBtb3JlIGFkdmFuY2VkIHN1YmplY3RzLCBpbmNsdWRpbmcgbGVhcm5pbmcgbW9yZSBwcm9ncmFtbWF0aWMgYXNwZWN0cyBvZiBSLgoKPiAiSGFuZHMtT24gUHJvZ3JhbW1pbmcgd2l0aCBSOiBXcml0ZSBZb3VyIE93biBGdW5jdGlvbnMgYW5kIFNpbXVsYXRpb25zIiBieSBHYXJyZXR0IEdyb2xlbXVuZAo+Cj4gaHR0cHM6Ly9yc3R1ZGlvLWVkdWNhdGlvbi5naXRodWIuaW8vaG9wci8KCiJSIGZvciBEYXRhIFNjaWVuY2UiIGNvdmVycyB0b3BpY3Mgc2ltaWxhciB0byB0aGlzIGNvdXJzZSwgaW5jbHVkaW5nIHBsb3R0aW5nIHdpdGggYGdncGxvdDJgIGFuZCBkYXRhIG1hbmlwdWxhdGlvbiB3aXRoIGBkcGx5cmAuCgo+ICJSIGZvciBEYXRhIFNjaWVuY2UiIGJ5IEdhcnJldHQgR3JvbGVtdW5kIGFuZEhhZGxleSBXaWNraGFtCj4KPiBodHRwczovL3I0ZHMuaGFkLmNvLm56LwoKIyBDb3Vyc2Ugbm90ZXMKCkJlbG93IGlzIGFuIG92ZXJ2aWV3IG9mIGFsbCB0aGUgY291cnNlIG5vdGVzLgoKTnVtYmVyIHwgRGVzY3JpcHRpb24gfCBOb3RlYm9vawotLS18LS0tfC0tLQoxLjEgfCBSZWFkaW5nIGRhdGEsIHBsb3R0aW5nLCBhbmQgdCB0ZXN0LiB8IFtOb3Rlc10oaHR0cHM6Ly9vbGF2dXJtb3J0ZW5zZW4uZ2l0aHViLmlvL3ItZm9yLXN0YXRpc3RpY3Mvbm90ZWJvb2tzL2Nhc2Vfc3R1ZGllcy9taWNlX3N0dWRpZXMvc3R1ZHkxLm5iLmh0bWwpCjEuMiB8IExpbmVhciByZWdyZXNzaW9uIGFuZCBtb3JlIHBsb3R0aW5nLiB8IFtOb3Rlc10oaHR0cHM6Ly9vbGF2dXJtb3J0ZW5zZW4uZ2l0aHViLmlvL3ItZm9yLXN0YXRpc3RpY3Mvbm90ZWJvb2tzL2Nhc2Vfc3R1ZGllcy9taWNlX3N0dWRpZXMvc3R1ZHkyLm5iLmh0bWwpCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBmb3IgU3RhdGlzdGljcyIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKKipUYWJsZSBvZiBjb250ZW50czoqKgoKPCEtLSB0b2MgLS0+Ci0gW1ByZXBhcmF0aW9uXSgjUHJlcGFyYXRpb24pCiAgKiBbUmVhZGluZyBtYXRlcmlhbF0oI1JlYWRpbmctbWF0ZXJpYWwpCiAgKiBbSW5zdGFsbGluZyBSL1JzdHVkaW9dKCNJbnN0YWxsaW5nLVJSc3R1ZGlvKQotIFtDb3Vyc2Ugb3ZlcnZpZXddKCNDb3Vyc2Utb3ZlcnZpZXcpCi0gW0FmdGVyIHRoZSBjb3Vyc2VdKCNBZnRlci10aGUtY291cnNlKQotIFtDYXNlIHN0dWRpZXNdKCNDYXNlLXN0dWRpZXMpCgo8IS0tIHRvY3N0b3AgLS0+CgpUaGlzIHdlYnNpdGUgY29uY2VybnMgdGhlICJSIGZvciBTdGF0aXN0aWNzIiBQaEQgY291cnNlIGF0IHRoZSBVbml2ZXJzaXR5IG9mIHRoZSBGYXJvZSBJc2xhbmRzLiBSZWFkIG1vcmUgYWJvdXQgdGhlIGNvdXJzZSBoZXJlOiBodHRwczovL3d3dy5zZXR1ci5mby9mby91dGJ1Z3Zpbmcvc3Rha2dyZWluYWxlc3R1ci9kZXBpbGluLWZ5cmktaGVpbHN1LW9nLWFsbWFubmFncmFuc2tpbmcvci1mb3Itc3RhdGlzdGljcy1iYXNpYy1jb3Vyc2UtaW4tdGhlLXN0YXRpc3RpY2FsLXByb2dyYW0tci1hbmQtcnN0dWRpby8KCkluIHRoaXMgY291cnNlLCB3ZSBsZWFybiBob3cgdG8gdXNlIFIgYW5kIFJTdHVkaW8gZm9yIHN0YXRpc3RpY3MuIFdlIGRvIG5vdCB0ZWFjaCBzdGF0aXN0aWNzIGluIHRoaXMgY291cnNlLCBhbmQgYXNzdW1lIHRoYXQgcGFydGljaXBhbnRzIGFyZSBhdCBsZWFzdCBzb21ld2hhdCBmYW1pbGlhciB3aXRoIHN0YXRpc3RpY3MuIFRoZSBjb3Vyc2UgaXMgdmVyeSBwcmFjdGljYWwsIGFuZCBpcyBiYXNlZCBvbiBzaG9ydCBjYXNlIHN0dWRpZXMgd2hlcmUgd2UgZ28gdGhyb3VnaCBmb3VyIGJhc2ljIHN0ZXBzIG9mIHN0YXRpc3RpY3MsIGxvYWRpbmcsIGNsZWFuaW5nLCBwbG90dGluZywgYW5kIG1vZGVsbGluZyBkYXRhLgoKQXR0ZW5kZWVzIG9mIHRoaXMgY291cnNlIHNob3VsZCByZWFkIHRoaXMgcGFnZSBjYXJlZnVsbHksIGluIHBhcnRpY3VsYXIgdGhlICJQcmVwYXJhdGlvbiIgc2VjdGlvbiwgaW5jbHVkaW5nIHRoZSAiUmVhZGluZyBtYXRlcmlhbCIgYW5kICJJbnN0YWxsaW5nIFIvUnN0dWRpbyIgc2VjdGlvbnMuCgojIFByZXBhcmF0aW9uCgojIyBSZWFkaW5nIG1hdGVyaWFsCgpUaGUgY291cnNlIHdpbGwgYmUgdmVyeSBoYW5kcy1vbiwgbGVhcm5pbmcgaG93IHRvIGRvIGFjdHVhbCBzdGF0aXN0aWNhbCBhbmFseXNlcyBpbiBSLCBidXQgd2Ugd2FudCB0byB0byB1bmRlcnN0YW5kIHNvbWUgYmFzaWMgUiBjb25jZXB0cyBiZWZvcmUgdGhlIHN0YXJ0IG9mIHRoZSBjb3Vyc2UuIFRvIHRoYXQgZW5kLCB5b3Ugc2hvdWxkIHJlYWQgcGFydHMgMSBhbmQgMiwgdGhhdCBpcywgY2hhcHRlcnMgMSB0aHJvdWdoIDgsIG9mICJIYW5kcy1vbiBQcm9ncmFtbWluZyB3aXRoIFIiLiBJdCBpcyBpbXBvcnRhbnQgdGhhdCB5b3UgcmVhZCB0aGUgbWF0ZXJpYWwsIGFzIGlmIHlvdSBkb24ndCB5b3UgbWF5IGZpbmQgaXQgZGlmZmljdWx0LCBvciBpbXBvc3NpYmxlLCB0byBmb2xsb3cgdGhlIGNvdXJzZS4KCj4gIkhhbmRzLU9uIFByb2dyYW1taW5nIHdpdGggUjogV3JpdGUgWW91ciBPd24gRnVuY3Rpb25zIGFuZCBTaW11bGF0aW9ucyIgYnkgR2FycmV0dCBHcm9sZW11bmQKPgo+IGh0dHBzOi8vcnN0dWRpby1lZHVjYXRpb24uZ2l0aHViLmlvL2hvcHIvCgpXZSB3YW50IHlvdSB0byB1bmRlcnN0YW5kIHRoZSBjb25jZXB0cyBsYXllZCBvdXQgaW4gdGhlc2UgY2hhcHRlcnMgdG8gdGhlIGJlc3Qgb2YgeW91ciBhYmlsaXRpZXMuIEluIGdlbmVyYWwsIHdlIHdhbnQgeW91IHRvIHVuZGVyc3RhbmQ6CgoqIEhvdyB0byB1c2UgYXJpdGhtZXRpYyBhbmQgdmFyaWFibGVzIGluIFIKKiBIb3cgZnVuY3Rpb25zIHdvcmsgYW5kIGhvdyB0byB1c2UgdGhlbQoqIEJhc2ljIGRhdGEgdHlwZXMgbGlrZSBzdHJpbmdzLCBsaXN0cywgdmVjdG9ycyBhbmQgZXNwZWNpYWxseSAqZGF0YSBmcmFtZXMqCgpXZSByZWNvbW1lbmQgdGhhdCB5b3UgaGF2ZSBSIG9wZW4gd2hpbGUgeW91IHJlYWQsIGFuZCB0cnkgc29tZSBvZiB0aGUgY29tbWFuZHMgdG8gaW1wcm92ZSB5b3VyIHVuZGVyc3RhbmRpbmcgb2YgdGhlIG1hdGVyaWFsIGluIHRoZSBib29rLiBUaGUgYm9vayBoYXMgc2hvcnQgZXhjZXJjaXNlcywgYnV0IGRvbid0IHdvcnJ5IGlmIHlvdSBkb24ndCBrbm93IGhvdyB0byBzb2x2ZSBhbGwgb2YgdGhlc2UuCgpUbyBoZWxwIHlvdSBnZXQgdGhlIG1vc3Qgb3V0IG9mIHlvdXIgcmVhZGluZywgaGVyZSdzIHdoYXQgeW91IHNob3VsZCBmb2N1cyBvbiB3aGVuIHJlYWRpbmcgdGhlIGNoYXB0ZXJzOgoKKiBQYXJ0IDEgKGNoYXB0ZXJzIDEtMyk6CiAgICAqIFJlYWQgY2FyZWZ1bGx5LCB1bmRlcnN0YW5kIHRvIHRoZSBiZXN0IG9mIHlvdXIgYWJpbGl0aWVzLgoqIFBhcnQgMiAoY2hhcHRlcnMgNC04KToKICAgICogVGhlIG1hdGVyaWFsIGluIHRoZXNlIGNoYXB0ZXJzIGlzIGltcG9ydGFudCBhcyB3ZWxsLiBEb24ndCBnZXQgY2F1Z2h0IHVwIGluIGRldGFpbHMgdGhvdWdoLCBpZiB5b3UncmUgaGF2aW5nIGdyZWF0IHRyb3VibGUgd2l0aCBzb21ldGhpbmcsIG1vdmUgb24uCiogQ2hhcHRlciAyLjE6IFRoZSBSIFVzZXIgSW50ZXJmYWNlCiAgICAqIERvbid0IHdvcnJ5IGlmIHlvdSBkb24ndCBmdWxseSBncmFzcCBpdCwgd2Ugd2lsbCBjb3ZlciBpdCBpbiBjbGFzcy4KKiBDaGFwdGVyIDIuNDogV3JpdGluZyBZb3VyIE93biBGdW5jdGlvbnMKICAgICogV2UgZG9uJ3QgZXhwZWN0IHlvdSB0byBiZSBhYmxlIHRvIHdyaXRlIHlvdXIgb3duIGZ1bmN0aW9ucy4KKiBDaGFwdGVyIDMuMjogR2V0dGluZyBIZWxwIHdpdGggSGVscCBQYWdlcwogICAgKiBXZSB3aWxsIHRhbGsgbW9yZSBhYm91dCBnZXR0aW5nIGhlbHAgaW4gY2xhc3MuCiogQ2hhcHRlciA1LjEuNTogQ29tcGxleCBhbmQgcmF3CiAgICAqIFNraXAKKiBDaGFwdGVyIDUuMy01LjUKICAgICogU2tpbQogICAgKiBTa2ltIHRoZXNlIGNoYXB0ZXJzLiBSZWFkIHRoZW0sIGJ1dCBkb24ndCB3b3JyeSBpZiB5b3UgZG9uJ3QgZnVsbHkgdW5kZXJzdGFuZCB0aGVpciBjb250ZW50LgoqIENoYXB0ZXIgODogRW52aXJvbm1lbnRzCiAgICAqIFNraXAuCiAgCgojIyBJbnN0YWxsaW5nIFIvUnN0dWRpbwoKWW91IG5lZWQgdG8gYnJpbmcgYSBsYXB0b3AgdG8gdGhlIGNvdXJzZSwgYW5kIGJlZm9yZSB5b3UgYXJyaXZlIHlvdSBuZWVkIHRvIGluc3RhbGwgUiBhbmQgUnN0dWRpby4gRG93bmxvYWQgYW5kIGluc3RhbGwgdGhlIGZyZWUgZGVza3RvcCB2ZXJzaW9uIG9mIFJTdHVkaW8uIFIgYW5kIFJTdHVkaW8gYXJlIGF2YWlsYWJsZSBmb3IgV2luZG93cywgTWFjIGFuZCBMaW51eC4KCj4gRG93bmxvYWQgYW5kIGluc3RhbGwgdGhlIG5ld2VzdCB2ZXJzaW9uIG9mIFI6Cj4KPiBodHRwczovL3d3dy5yLXByb2plY3Qub3JnLwoKPiBEb3dubG9hZCBhbmQgaW5zdGFsbCBSU3R1ZGlvIERlc2t0b3Agd2l0aCB0aGUgT3BlbiBTb3VyY2UgTGljZW5zZToKPiAKPiBodHRwczovL3d3dy5yc3R1ZGlvLmNvbQoKSWYgeW91IGdldCBzdHVjayBpbnN0YWxsaW5nIFIgYW5kL29yIFJTdHVkaW8sIGEgcXVpY2sgW0dvb2dsZSBzZWFyY2hdKGh0dHA6Ly9sbWd0ZnkuY29tLz9xPWhvdyt0bytpbnN0YWxsK3IrYW5kK3JzdHVkaW8pIHdpbGwgZ2l2ZSBzb21lIGhlbHBmdWwgcmVzb3VyY2VzLCBpbmNsdWRpbmc6CgoqIGh0dHBzOi8vd3d3LmRhdGFjYW1wLmNvbS9jb21tdW5pdHkvdHV0b3JpYWxzL2luc3RhbGxpbmctUi13aW5kb3dzLW1hYy11YnVudHUKKiBodHRwczovL2NvdXJzZXMuZWR4Lm9yZy9jb3Vyc2VzL1VUQXVzdGluWC9VVC43LjAxeC8zVDIwMTQvNTZjNTQzN2I4OGZhNDNjZjgyOGJmZjUzNzFjNmE5MjQvCgpBZnRlciBpbnN0YWxsaW5nIFJTdHVkaW8sIHRyeSBpbnN0YWxsaW5nIHRoaXMgcGFja2FnZS4gSG9wZWZ1bGx5LCB0aGUgcGFja2FnZSB3aWxsIGJlIGluc3RhbGxlZCBvbiB5b3VyIHN5c3RlbSB3aXRob3V0IHByb2JsZW1zLgoKYGBgCmluc3RhbGwucGFja2FnZXMoJ2RwbHlyJykKYGBgCgojIENvdXJzZSBvdmVydmlldwoKQW4gb3ZlcnZpZXcgb2YgdGhlIGNvdXJzZSBwcm9ncmFtIGlzIGluIHRoZSB0YWJsZSBiZWxvdy4KClRpbWUgfCAqKlR1ZXNkYXkqKiB8ICoqV2VkbmVzZGF5KiogfCAqKkZyaWRheSoqCi0tLXwtLS18LS0tfC0tLS0KODozMC0xMTozMCB8IEludHJvZHVjdGlvbiBhbmQgUlN0dWRpbyB8IENhc2Ugc3R1ZHkgMiB8IENhc2Ugc3R1ZHkgNAoxMTozMC0xMjozMCB8IEx1bmNoIHwgTHVuY2ggfCBMdW5jaAoxMjozMC0xNTozMCB8IENhc2Ugc3R1ZHkgMSB8IENhc2Ugc3R1ZHkgMyB8IFdvcmtzaG9wIGFuZCBleGFtCgpFdmVyeSBjYXNlIHN0dWR5IHNlc3Npb24gd2lsbCBpbmNsdWRlIGEgc21hbGwgaGFuZHMtb24gZXhlcmNpc2Ugc2Vzc2lvbiwgYSBzdW1tYXJ5LCBhbmQgYSBjb2ZmZWUgYnJlYWsuCgojIEFmdGVyIHRoZSBjb3Vyc2UKCkZpcnN0IGFuZCBmb3JlbW9zdCwgb3VyIGFkdmljZSB0byB5b3Ugd2hlbiB0aGUgY291cnNlIGlzIG92ZXIgaXMgdG8gc3RhcnQgYW5hbHlzaW5nIGRhdGEsIHdyaXRpbmcgc2NyaXB0cyBhbmQgbm90ZWJvb2tzLCBhbmQgbWFraW5nIHByb2plY3RzIGluIFIuIFN0YXRpc3RpY3MgYW5kIHByb2dyYW1taW5nIGlzIHNvbWV0aGluZyB5b3UgcHJpbWFyaWx5IGxlYXJuIGJ5IGV4cGVyaWVuY2UuIEhlcmUgZm9sbG93IGEgZmV3IGJvb2sgaWRlYXMgeW91IGNhbiB0cnkgaWYgeW91IHdhbnQgdG8gcmVhZCBtb3JlLgoKWW91IGNhbiBvZiBjb3Vyc2UgY29udGludWUgcmVhZGluZyAiSGFuZHMtb24gUHJvZ3JhbW1pbmcgd2l0aCBSIiwgYXMgcGFydCAzIGNvbnRhaW5zIHNvbWUgbW9yZSBhZHZhbmNlZCBtYXRlcmlhbCBjb3ZlcmluZywgYW1vbmcgb3RoZXIgdGhpbmdzLCBtb3JlIHByb2dyYW1tYXRpYyBhc3BlY3RzIG9mIFIuCgoiRGF0YSBBbmFseXNpcyBmb3IgdGhlIExpZmUgU2NpZW5jZXMiIGNvdmVycyBzdGF0aXN0aWNzIHVzaW5nIFIsIGFuZCBpcyB2ZXJ5IHByYWN0aWNhbCBhbmQgY2xlYXIuIEl0IGlzIG1vcmUgZ2VhcmVkIHRvd2FyZCBwZW9wbGUgd2hvIGtub3cgUiBhbmQgYXJlIHRyeWluZyB0byBsZWFybmluZyBzdGF0aXN0aWNzLCByYXRoZXIgdGhhbiBwZW9wbGUgdHJ5aW5nIHRvIGxlYXJuIFIsIGJ1dCBpcyBub25ldGhlbGVzcyB2ZXJ5IHVzZWZ1bC4KCj4gIkRhdGEgQW5hbHlzaXMgZm9yIHRoZSBMaWZlIFNjaWVuY2VzIiBieSBSYWZhZWwgQS4gSXJpemFycnkgYW5kIE1pY2hhZWwgSS4gTG92ZQo+Cj4gaHR0cHM6Ly9sZWFucHViLmNvbS9kYXRhYW5hbHlzaXNmb3J0aGVsaWZlc2NpZW5jZXMKCiJSIGZvciBEYXRhIFNjaWVuY2UiIGNvdmVycyB0b3BpY3Mgc2ltaWxhciB0byB0aGlzIGNvdXJzZSwgaW5jbHVkaW5nIHBsb3R0aW5nIHdpdGggYGdncGxvdDJgIGFuZCBkYXRhIG1hbmlwdWxhdGlvbiB3aXRoIGBkcGx5cmAuCgo+ICJSIGZvciBEYXRhIFNjaWVuY2UiIGJ5IEdhcnJldHQgR3JvbGVtdW5kIGFuZEhhZGxleSBXaWNraGFtCj4KPiBodHRwczovL3I0ZHMuaGFkLmNvLm56LwoKIyBDYXNlIHN0dWRpZXMKCkJlbG93IGlzIGFuIG92ZXJ2aWV3IG9mIGFsbCB0aGUgY2FzZSBzdHVkeSBub3RlYm9va3MuCgpOdW1iZXIgfCBEZXNjcmlwdGlvbiB8IE5vdGVib29rCi0tLXwtLS18LS0tCjEuMSB8IFJlYWRpbmcgZGF0YSwgcGxvdHRpbmcsIGFuZCB0IHRlc3QuIHwgW05vdGVzXShodHRwczovL29sYXZ1cm1vcnRlbnNlbi5naXRodWIuaW8vci1mb3Itc3RhdGlzdGljcy9ub3RlYm9va3MvY2FzZV9zdHVkaWVzL21pY2Vfc3R1ZGllcy9zdHVkeTEubmIuaHRtbCkKMS4yIHwgTGluZWFyIHJlZ3Jlc3Npb24gYW5kIG1vcmUgcGxvdHRpbmcuIHwgW05vdGVzXShodHRwczovL29sYXZ1cm1vcnRlbnNlbi5naXRodWIuaW8vci1mb3Itc3RhdGlzdGljcy9ub3RlYm9va3MvY2FzZV9zdHVkaWVzL21pY2Vfc3R1ZGllcy9zdHVkeTIubmIuaHRtbCkK</div>
 
 
 

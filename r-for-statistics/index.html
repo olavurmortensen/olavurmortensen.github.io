@@ -201,30 +201,64 @@ $(document).ready(function () {
 <li><a href="#Installing-RRstudio">Installing R/Rstudio</a></li>
 <li><a href="#Course-overview">Course overview</a></li>
 <li><a href="#After-the-course">After the course</a></li>
-<li><a href="#Course-notes">Course notes</a></li>
+<li><a href="#Case-studies">Case studies</a></li>
 </ul>
 <!-- tocstop -->
 <p>This website concerns the “R for Statistics” PhD course at the University of the Faroe Islands. Read more about the course here: <a href="https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/" class="uri">https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/</a></p>
+<p>In this course, we learn how to use R and RStudio for statistics. We do not teach statistics in this course, and assume that participants are at least somewhat familiar with statistics. The course is very practical, and is based on short case studies where we go through four basic steps of statistics, loading, cleaning, plotting, and modelling data.</p>
 <p>Attendees of this course should read this page carefully, in particular the “Preparation” section, including the “Reading material” and “Installing R/Rstudio” sections.</p>
 <div id="preparation" class="section level1">
 <h1>Preparation</h1>
 <div id="reading-material" class="section level2">
 <h2>Reading material</h2>
-<p>Before the start of the course, read the “R for Beginners” PDF. This short introduction to R by Emmanuel Paradis is only 76 pages and available free of charge. It is important that you read the material, as if you don’t you may find it difficult, or impossible, to follow the course.</p>
+<p>The course will be very hands-on, learning how to do actual statistical analyses in R, but we want to to understand some basic R concepts before the start of the course. To that end, you should read parts 1 and 2, that is, chapters 1 through 8, of “Hands-on Programming with R”. It is important that you read the material, as if you don’t you may find it difficult, or impossible, to follow the course.</p>
 <blockquote>
-<p>“R for Beginners” by Emmanuel Paradis:</p>
-<p><a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf" class="uri">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a></p>
+<p>“Hands-On Programming with R: Write Your Own Functions and Simulations” by Garrett Grolemund</p>
+<p><a href="https://rstudio-education.github.io/hopr/" class="uri">https://rstudio-education.github.io/hopr/</a></p>
 </blockquote>
-<p>We want you to understand the concepts layed out in this book to the best of your abilities, but the book does cover some more advanced material that we do not expect you to understand fully. In general, we want you to understand:</p>
+<p>We want you to understand the concepts layed out in these chapters to the best of your abilities. In general, we want you to understand:</p>
 <ul>
-<li>How the R command-line works</li>
 <li>How to use arithmetic and variables in R</li>
-<li>What functions are for and how to use them</li>
-<li>Basic data types like strings, lists, and especially <em>data frames</em></li>
+<li>How functions work and how to use them</li>
+<li>Basic data types like strings, lists, vectors and especially <em>data frames</em></li>
 </ul>
-<p>Chapters 1 through 3 are required reading. Read these chapters carefully, and make sure you understand all the concepts to the best of your ability.</p>
-<p>Although chapters 4 through 6 are not required reading, you might find chapter 6 useful and interesting. If you would like to learn more about the programmatic aspects of R, including loops, conditional execution, and writing functions, you can attempt this chapter. We do not expect you to grasp the content of chapter 6.</p>
-<p>We recommend that you have R open while you read, and try some of the commands to improve your understanding of the material in the book.</p>
+<p>We recommend that you have R open while you read, and try some of the commands to improve your understanding of the material in the book. The book has short excercises, but don’t worry if you don’t know how to solve all of these.</p>
+<p>To help you get the most out of your reading, here’s what you should focus on when reading the chapters:</p>
+<ul>
+<li>Part 1 (chapters 1-3):
+<ul>
+<li>Read carefully, understand to the best of your abilities.</li>
+</ul></li>
+<li>Part 2 (chapters 4-8):
+<ul>
+<li>The material in these chapters is important as well. Don’t get caught up in details though, if you’re having great trouble with something, move on.</li>
+</ul></li>
+<li>Chapter 2.1: The R User Interface
+<ul>
+<li>Don’t worry if you don’t fully grasp it, we will cover it in class.</li>
+</ul></li>
+<li>Chapter 2.4: Writing Your Own Functions
+<ul>
+<li>We don’t expect you to be able to write your own functions.</li>
+</ul></li>
+<li>Chapter 3.2: Getting Help with Help Pages
+<ul>
+<li>We will talk more about getting help in class.</li>
+</ul></li>
+<li>Chapter 5.1.5: Complex and raw
+<ul>
+<li>Skip</li>
+</ul></li>
+<li>Chapter 5.3-5.5
+<ul>
+<li>Skim</li>
+<li>Skim these chapters. Read them, but don’t worry if you don’t fully understand their content.</li>
+</ul></li>
+<li>Chapter 8: Environments
+<ul>
+<li>Skip.</li>
+</ul></li>
+</ul>
 </div>
 <div id="installing-rrstudio" class="section level2">
 <h2>Installing R/Rstudio</h2>
@@ -248,19 +282,47 @@ $(document).ready(function () {
 </div>
 <div id="course-overview" class="section level1">
 <h1>Course overview</h1>
+<p>An overview of the course program is in the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th><strong>Tuesday</strong></th>
+<th><strong>Wednesday</strong></th>
+<th><strong>Friday</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8:30-11:30</td>
+<td>Introduction and RStudio</td>
+<td>Case study 2</td>
+<td>Case study 4</td>
+</tr>
+<tr class="even">
+<td>11:30-12:30</td>
+<td>Lunch</td>
+<td>Lunch</td>
+<td>Lunch</td>
+</tr>
+<tr class="odd">
+<td>12:30-15:30</td>
+<td>Case study 1</td>
+<td>Case study 3</td>
+<td>Workshop and exam</td>
+</tr>
+</tbody>
+</table>
+<p>Every case study session will include a small exercise session, a summary, and a coffee break.</p>
 </div>
 <div id="after-the-course" class="section level1">
 <h1>After the course</h1>
 <p>First and foremost, our advice to you when the course is over is to start analysing data, writing scripts and notebooks, and making projects in R. Statistics and programming is something you primarily learn by experience. Here follow a few book ideas you can try if you want to read more.</p>
-<p>“Data Analysis for the Life Sciences” covers statistics using R, and is very practical and pedagogical. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.</p>
+<p>You can of course continue reading “Hands-on Programming with R”, as part 3 contains some more advanced material covering, among other things, more programmatic aspects of R.</p>
+<p>“Data Analysis for the Life Sciences” covers statistics using R, and is very practical and clear. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.</p>
 <blockquote>
 <p>“Data Analysis for the Life Sciences” by Rafael A. Irizarry and Michael I. Love</p>
 <p><a href="https://leanpub.com/dataanalysisforthelifesciences" class="uri">https://leanpub.com/dataanalysisforthelifesciences</a></p>
-</blockquote>
-<p>“Hands-on Programming with R” is one of many examples of books you could read if you want to learn more, including learning more programmatic aspects of R.</p>
-<blockquote>
-<p>“Hands-On Programming with R: Write Your Own Functions and Simulations” by Garrett Grolemund</p>
-<p><a href="https://rstudio-education.github.io/hopr/" class="uri">https://rstudio-education.github.io/hopr/</a></p>
 </blockquote>
 <p>“R for Data Science” covers topics similar to this course, including plotting with <code>ggplot2</code> and data manipulation with <code>dplyr</code>.</p>
 <blockquote>
@@ -268,9 +330,9 @@ $(document).ready(function () {
 <p><a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
 </blockquote>
 </div>
-<div id="course-notes" class="section level1">
-<h1>Course notes</h1>
-<p>Below is an overview of all the course notes.</p>
+<div id="case-studies" class="section level1">
+<h1>Case studies</h1>
+<p>Below is an overview of all the case study notebooks.</p>
 <table>
 <thead>
 <tr class="header">
