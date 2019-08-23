@@ -1,0 +1,171 @@
+---
+title: "Logistic regression"
+output: html_document
+---
+
+## Objectives
+
+Introduce basic functions to perform logistic regression using R.
+
+## Basics of logistic regression and data
+
+Logistisc regression is a kind og linear regression on binary data.
+
+The interpretations of a linear regression is: For a given x, y increases by...
+
+The effect of the explanatory variables is associtated by the other variables in the model, and the effect is linear.
+
+However, when we are working with other variables, such as binary or factor variables.
+
+First of all, lets just take a quick look at probabilities:
+
+- p = the probability that somthing occurs.
+- Odds = p / (1 − p)
+  - p = 0.5 ⇒ Odds = 0.5/0.5 = 1
+
+Another way to describe odds is by taking the logarithmic value of odds (logit)
+
+- Logit = Ln(Odds) = Ln(p / (1 − p))
+- Odds = e^logit
+- p = e^logit / (1 - e^logit)
+
+### Sample size
+logit models require significant number of cases because they use maximum likelihood estimation techniques. It is also important to keep in mind that when the outcome is rare, even if the overall dataset is large, it can be difficult to estimate a logit model.
+
+### Interpretation
+
+Odds-ratio refers to the difference in odds for getting the response variable or not between different factors of a risk factor/explanatory variable.
+
+Our H0 (null-hypothesis) states that there is no association between a risk factor and the outcome variable.
+
+### The model
+
+Prioritising the variables
+
+- De primære variable er de uafhængige variable, som har særlig – faglig – interesse Sammenhængene mellem de primære variable og den afhængige variabel er de primære sammenhænge
+- De sekundære variable er dem, hvis eneste funktion er at optræde som kontrolvariable Sammenhængene mellem den afhængige variabel og de sekundære variable omtales som sekundære sammenhænge
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)  # Reading Excel files.
+library(tibble)  # The "tibble" datastructure.
+library(dplyr)  # Working with the tibble datastructure.
+library(ggplot2)  # Plotting.
+library(lubridate)  # Working with datetime objects.
+library(magrittr)  # Need this for the %>% operator.
+library(devtools)  # For printing the session info at the end of the notebook.
+library(knitr)
+library(aod)
+```
+
+
+We will go back to the data loaded previously ("weight_height_data.xlsx"). The data was loaded as a dataset called "data"" and manupilated previously. We do not have a binomial data in our data set, so this case just serves as an example. First of all, to create a binomial response variable we would like to create a variable that describes if Height_2 is equal to or higher than 138 cm (h2 < 138 cm = 0, h2 >= 138 cm = 1).
+
+The outcome variable is now a continous variable, however our hypothesis is stated as if the variable was a binary variable. So we have to change it to a binary variable. The predictor variables are continous and dicotom variables (h1, w0, gender).
+
+```{r}
+head(data)
+```
+
+We will create the dicotome variable 'h2d' based on the height data from measurement 2 ('h2')
+```{r}
+data <- mutate(data, h2d = ifelse(h2 < 1.38, 0,
+                    ifelse(h2 >= 1.38, 1, 2)))
+```
+
+```{r}
+summary(data)
+sapply(mydata,sd)
+```
+
+### two-way contigency table
+
+- You should check for empty or small cells by doing a crosstab between categorical predictors and the outcome variable. If a cell has very few cases (a small cell), the model may become unstable or it might not run at all. Better to remove variables with small or no cases. Hence, we create a two-way contigency table:
+
+```{r}
+xtabs(~h2d + gender, data=data)
+```
+
+### logit model
+
+First, lets change the diicotom variable to a factor variable:
+
+```{r}
+data$h2d <- factor(data$h2d)
+
+```
+
+Then, lets use the 'glm' function (generalized linear model).
+
+First of all we specifiy the function. we want to see if height at birth can predict if a person gets higher than 1.38.
+
+```{r}
+logit <- glm(h2d ~ h0, data=data, family = "binomial")
+summary(logit)
+```
+
+- Each one-unit change in age will increase the log odds of getting higher than 1.38 by 0.52908, however, the p-value indicates that it is insignificant.
+- The difference between Null deviance and Residual deviance tells us that the model is a good fit. Greater the difference better the model. Null deviance is the value when you only have intercept in your equation with no variables and Residual deviance is the value when you are taking all the variables into account. It makes sense to consider the model good if that difference is big enough.
+
+
+If we want to plot the data and thelogistic regression model we can do this using ggplot:
+
+```{r warning=FALSE}
+ggplot(data, aes(x=h1, y=h2d)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+```
+
+Now we will create a more complicated model with more predictors.
+
+```{r}
+logit <- glm(h2d ~ w0 + h0 + w1 + h1 + age2 + gender, data=data, family = "binomial")
+summary(logit)
+```
+
+It is possible to test for interactions when there are multiple predictors. The interactions can be specified individually, as with a + b + c + a:b + b:c + a:b:c, or they can be expanded automatically, with a * b * c.
+
+In this case we chose to perform a single interaction.
+
+```{r}
+logit <- glm(h2d ~ w0 + h0 + w1 + h1 + age2 + gender + h0:w0 + w1:h1 + h0:h1, data=data, family = "binomial")
+summary(logit)
+```
+
+We can also add CIs using profiled log-likelihood or using standard errors
+
+```{r}
+confint(logit)
+confint.default(logit)
+```
+
+You can also exponentiate the coefficients and interpret them as odds-ratios. R will do this computation for you. To get the exponentiated coefficients, you tell R that you want to exponentiate (exp), and that the object you want to exponentiate is called coefficients and it is part of mylogit (coef(mylogit)). We can use the same logic to get odds ratios and their confidence intervals, by exponentiating the confidence intervals from before. To put it all in one table, we use cbind to bind the coefficients and confidence intervals column-wise.
+
+
+```{r}
+exp(cbind(OR = coef(logit), confint(logit)))
+```
+
+To return to the overall fit of the model we can test the difference between null null deviance and residual deviance, the difference in degrees of freedoms and the p-value:
+
+```{r}
+with(logit, null.deviance - deviance)
+with(logit, df.null - df.residual)
+with(logit, pchisq(null.deviance - deviance, df.null - df.residual, lower.tail = FALSE))
+```
+
+The chi-square of 153 with 7 degrees of freedom and an associated p-value of <0.001 tells us that our model as a whole fits significantly better than an empty model. This is sometimes called a likelihood ratio test (the deviance residual is -2*log likelihood). To see the model’s log likelihood, we type:
+
+```{r}
+logLik(logit)
+```
+
+
+# Kan vi lave en ny model variabel? RANK (1-4 eller noget lignende)?
+https://stats.idre.ucla.edu/r/dae/logit-regression/
+
+
+```{r}
+devtools::session_info()
+```

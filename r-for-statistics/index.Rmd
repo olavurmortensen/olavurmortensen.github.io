@@ -1,23 +1,10 @@
 ---
 title: "R for Statistics"
 output:
-  html_document: default
-  html_notebook: default
+  html_notebook:
+    toc: true
+    toc_float: true
 ---
-
-**NOTE:** This web-page is *NOT* "live". It is under development and the information here is not relevant *yet*.
-
-**Table of contents:**
-
-<!-- toc -->
-- [Preparation](#Preparation)
-  * [Reading material](#Reading-material)
-  * [Installing R/Rstudio](#Installing-RRstudio)
-- [Course overview](#Course-overview)
-- [After the course](#After-the-course)
-- [Case studies](#Case-studies)
-
-<!-- tocstop -->
 
 **NOTE:** This web-page is *NOT* "live". It is under development and the information here is not relevant *yet*.
 
@@ -85,7 +72,7 @@ If you get stuck installing R and/or RStudio, a quick [Google search](http://lmg
 After installing RStudio, try installing this package. Hopefully, the package will be installed on your system without problems.
 
 ```
-install.packages('dplyr')
+install.packages('tidyverse')
 ```
 
 # Course overview

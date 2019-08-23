@@ -1,9 +1,11 @@
 ---
-title: "Mice case study 1"
+title: "Mouse weight case study 1"
 output:
-  html_notebook: default
-  html_document: default
+  html_notebook:
+    toc: true
+    toc_float: true
 ---
+
 
 In this case study, we are going to analyse a dataset containing bodyweight measurements of mice receiving two different diets, the standard "chow" diet and a high-fat diet. We also have the gender of the mice, but we will save that variable for next case study. Our hypothesis is that the high-fat diet has an effect on the weight of the mice.
 
@@ -41,7 +43,7 @@ The data we need is available on the web, so we are just going to download it di
 
 ```{r}
 # Download CSV file into current directory.
-url = 'https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv'
+url <- 'https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv'
 download.file(url, 'mice_pheno.csv')
 ```
 
@@ -49,7 +51,7 @@ We read the data from the CSV file we just downloaded. Below, we pass the relati
 
 ```{r}
 # Read CSV file into a tibble.
-mice = read_csv('mice_pheno.csv')
+mice <- read_csv('mice_pheno.csv')
 ```
 
 The `read_csv()` function reads the CSV file and stores the data in a tibble object which we name `mice`. The data is stored in the memory of the computer, and any changes made to `data` are only stored in memory. If you want to save the changes you make to the data, write the data to disk using, for example, the `write_csv()` function.
@@ -64,14 +66,21 @@ Because we are lazy, we are going to simplify the column names a bit, as we are 
 
 ```{r}
 # Change column names.
-mice = mice %>% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodyweight')
+mice <- mice %>% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodyweight')
 ```
 
 We are not going to use all of the columns in the data, so we drop all the unused columns. We do this using the `select()` function, supplying the names of the columns we want to retain. 
 
 ```{r}
 # Subset the columns in the data.
-mice = mice %>% select("diet", "weight")
+mice <- mice %>% select("diet", "weight")
+```
+
+Next, we will use the `mutate()` function to convert the `diet` variable from characters to factors. Below, we use `as.factor()` to convert the `diet` variable, and use `mutate()` to overwrite the existing `diet` variable.
+
+```{r}
+# Convert the diet variable from character to factor.
+mice <- mice %>% mutate(diet=as.factor(diet))
 ```
 
 We print the head of the dataset again, just to show that changes have been made.
@@ -85,16 +94,16 @@ head(mice)
 
 In this section, we will visualize the data, in order to get an overview of the data, check assumptions, and possibly pre-process the data further if necessary. For this first case study, we will make a histogram, a box plot and a QQ-plot of each of our variables.
 
-First, however, let's quickly look at some summary stats for the data, using the `summary()` function. Note that the `weight` variable has five `NA` values, meaning that there is missing data.
+First, however, let's quickly look at some summary stats for the data, using the `summary()` function. Note that the `weight` variable has five `NA` values, meaning that there is missing data. Because the `diet` variable is a factor, `summary()` counts the occurrence of each level, which is quite useful.
 
 ```{r}
 summary(mice)
 ```
 
-`summary()` didn't reveal much about our categorical variable, `diet`. Below we use the `table()` function to get counts of each distinct value of `diet`. Note that we again use `select()` to get the variable we're interested in.
+A different way to count occurrences in any vector is using the `table()` function, and below we first *pull* the `diet` variable from the tibble, and then pass that to `table()`.
 
 ```{r}
-mice %>% select(diet) %>% table()
+mice %>% pull(diet) %>% table()
 ```
 
 
@@ -118,7 +127,7 @@ ggplot(mice, aes(weight)) +
 `geom_boxplot()` will split the data according to the `x` variable, so there is no need to use `facet_grid()` below.
 
 ```{r fig.width=5, fig.height=5}
-ggplot(mice, aes(x=diet, weight)) +
+ggplot(mice, aes(diet, weight)) +
   geom_boxplot(na.rm=TRUE) +
   labs(title='Box plot of mice weights')
 ```
@@ -142,14 +151,14 @@ ggplot(mice, aes(sample=weight)) +
 Below, we use a t test to test the difference in the mean `weight` in two groups, the `chow` and the `hf` groups, specifying the `mice` dataset. The `weight ~ diet` syntax, using the `~` operator, is common in modelling in R. This is a formula relating the variable of interest (the reponse) on the left-hand-side (in this case `weight`) to the explanatory variables on the right-hand-side. This way of thinking about it will make more sense when we get to the linear models, in the next case study.
 
 ```{r}
-model = t.test(weight ~ diet, data=mice)
+model <- t.test(weight ~ diet, data=mice)
 model
 ```
 
 We see that the test is highly significant. The 95% confidence interval for the difference in mean is somewhat broad if what we wanted was a precise estimate of this difference. However, if we just want to know whether there *is* a difference, what we can note is that the confidence interval does not include zero, not by far. So we can be quite confident that this difference is real, provided that the original experiment sampled the populations correctly.
 
 
-To conclude this R notebook, we use the `devtools::sessions_info()` function to print information about this R session, including R version and packages loaded. This improves the reproducibility of this analysis, as without this information, package versions in particular, the code may not perform the way it is supposed to, and either produce incorrect results or not work at all.
+To conclude this R notebook, we use the `devtools::sessions_info()` function to print information about this R session, including R version and packages loaded. This improves the reproducibility of this analysis, as without this information, package versions in particular, the code may not perform the way it is supposed to, and either produce incorrect results or not work at all. If you are asking for help when something isn't working, whether it is from colleagues or online, this information is also very useful.
 
 ```{r}
 devtools::session_info()

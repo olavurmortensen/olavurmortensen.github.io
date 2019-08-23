@@ -1,0 +1,104 @@
+---
+title: "Meta analysis of GWAS"
+output: html_document
+---
+
+
+> UC: ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/deLangeKM_28067908_GCST004133/uc_build37_45975_20161107.txt.gz
+> CD: ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/deLangeKM_28067908_GCST004132/cd_build37_40266_20161107.txt.gz
+
+
+
+```{r eval=FALSE}
+install.packages('hexbin')
+install.packages('BiocInstaller')
+BiocInstaller::biocLite('VariantAnnotation')
+BiocInstaller::biocLite('GenomicRanges')
+```
+
+```{r}
+library(readr)
+library(tibble)
+library(dplyr)
+library(ggplot2)
+library(VariantAnnotation)
+library(GenomicRanges)
+```
+
+
+```{r}
+#uc = read_delim('~/Documents/gwas_sumstats/uc_build37_45975_20161107.txt.gz', delim='\t')
+#cd = read_delim('~/Documents/gwas_sumstats/cd_build37_40266_20161107.txt.gz', delim='\t')
+uc = read_delim('~/Documents/gwas_sumstats/uc/28067908-GCST004133-EFO_0000729.h.tsv.gz', delim='\t')
+cd = read_delim('~/Documents/gwas_sumstats/cd/28067908-GCST004132-EFO_0000384.h.tsv.gz', delim='\t')
+```
+
+```{r}
+uc = uc %>% dplyr::select(c('hm_rsid', 'hm_chrom', 'hm_pos', 'hm_beta'))
+cd = cd %>% dplyr::select(c('hm_rsid', 'hm_chrom', 'hm_pos', 'hm_beta'))
+```
+
+
+```{r}
+head(uc)
+```
+
+```{r}
+head(cd)
+```
+
+
+```{r}
+combined = inner_join(cd, uc, by=c('hm_rsid'='hm_rsid', 'hm_chrom'='hm_chrom', 'hm_pos'='hm_pos'))
+head(combined)
+```
+
+```{r}
+rm(uc)
+rm(cd)
+gc()
+```
+
+
+```{r}
+#combined_sampled = combined %>% sample_n(1000)
+```
+
+```{r}
+combined_gr = GRanges(seqnames=combined$hm_chrom, IRanges(start=combined$hm_pos, end=combined$hm_pos))
+mcols(combined_gr, use.names=TRUE) = combined
+```
+
+
+```{r}
+dbsnp = '~/Documents/gwas_sumstats/dbsnp/common_all_20170710.vcf.gz'
+params = ScanVcfParam(info='CAF', which=combined_gr)
+vcf = readVcf(dbsnp, 'hg19', param=params)
+```
+
+```{r}
+filtered_sites = subsetByOverlaps(combined_gr, vcf) %>%
+  as_tibble()
+```
+
+
+
+
+```{r}
+ggplot(filtered_sites, aes(hm_beta.x)) +
+  geom_histogram(bins=30)
+```
+
+```{r}
+ggplot(filtered_sites, aes(hm_beta.y)) +
+  geom_histogram(bins=30)
+```
+
+```{r}
+ggplot(filtered_sites, aes(hm_beta.x, hm_beta.y)) +
+  geom_hex()
+```
+
+
+
+

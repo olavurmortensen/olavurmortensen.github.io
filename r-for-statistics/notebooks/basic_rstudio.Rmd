@@ -1,6 +1,0 @@
----
-title: "Basic Rstudio"
-output: html_notebook
----
-
-Temp temp temp temp temp temp temp temp.
