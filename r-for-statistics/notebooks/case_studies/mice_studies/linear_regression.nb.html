@@ -209,7 +209,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("study2.Rmd");
+  window.initializeSourceEmbed("linear_regression.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -359,9 +359,8 @@ library(devtools)  # For printing the session info at the end of the notebook.</
 <p>Assuming we have already downloaded the data in the previous case study, we simply read it.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWljZSA9IHJlYWRfY3N2KCdtaWNlX3BoZW5vLmNzdicpXG5cbmBgYCJ9 -->
-<pre class="r"><code>mice = read_csv('mice_pheno.csv')
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWljZSA8LSByZWFkX2NzdignbWljZV9waGVuby5jc3YnKVxuYGBgIn0= -->
+<pre class="r"><code>mice &lt;- read_csv('mice_pheno.csv')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBTZXggPSBjb2xfY2hhcmFjdGVyKCksXG4gIERpZXQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIEJvZHl3ZWlnaHQgPSBjb2xfZG91YmxlKClcbilcbiJ9 -->
 <pre><code>Parsed with column specification:
@@ -376,10 +375,10 @@ cols(
 <p>We simplify the names, as last time, and convert character variables to factors.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGFuZ2UgY29sdW1uIG5hbWVzLlxubWljZSA9IG1pY2UgJT4lIHJlbmFtZSgnc2V4JyA9ICdTZXgnLCAnZGlldCcgPSAnRGlldCcsICd3ZWlnaHQnID0gJ0JvZHl3ZWlnaHQnKVxuIyBDb252ZXJ0IHRoZSBkaWV0IHZhcmlhYmxlIGZyb20gY2hhcmFjdGVyIHRvIGZhY3Rvci5cbm1pY2UgPC0gbWljZSAlPiUgbXV0YXRlKHNleD1hcy5mYWN0b3Ioc2V4KSwgZGlldD1hcy5mYWN0b3IoZGlldCkpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGFuZ2UgY29sdW1uIG5hbWVzLlxubWljZSA8LSBtaWNlICU+JSByZW5hbWUoJ3NleCcgPSAnU2V4JywgJ2RpZXQnID0gJ0RpZXQnLCAnd2VpZ2h0JyA9ICdCb2R5d2VpZ2h0JylcbiMgQ29udmVydCBjaGFyYWN0ZXIgdmFyaWFibGVzIHRvIGZhY3RvcnMuXG5taWNlIDwtIG1pY2UgJT4lIG11dGF0ZShzZXg9YXMuZmFjdG9yKHNleCksIGRpZXQ9YXMuZmFjdG9yKGRpZXQpKVxuYGBgIn0= -->
 <pre class="r"><code># Change column names.
-mice = mice %&gt;% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodyweight')
-# Convert the diet variable from character to factor.
+mice &lt;- mice %&gt;% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodyweight')
+# Convert character variables to factors.
 mice &lt;- mice %&gt;% mutate(sex=as.factor(sex), diet=as.factor(diet))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -394,10 +393,10 @@ mice &lt;- mice %&gt;% mutate(sex=as.factor(sex), diet=as.factor(diet))</code></
 <pre class="r"><code>mice %&gt;% group_by(diet, sex) %&gt;%
   summarize(mean=mean(weight, na.rm=TRUE), samples=n())</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjQsIm5yb3ciOjR9LCJyZGYiOiJINHNJQUFBQUFBQUFBNzFTelVyRFFCRGUvTlRhUUgrZytCanRRUVRCZzFZcDNyem9wWWhRdHB0dEU3ck5obVJES3doNjB6ZndSVHoyS3ZnQTRsblJCeEFGVDlLNG0rNDJKbGJ3WkdDeXM3TXozM3c3M3g2Mk8rdFd4d0lBNk1Bd1RhQWIzRFYxL3RPQUNVcGluUUJnMUVXVVd5MVo1d2NtY3VoNGlhODcvVzlldGtiYlY4N0JrZ2dBRlpIYjJueTVHYnhkSHJlMlA2WW5hSHJkMm1vL0hKeFg3bHU3NU9wNTdleWQ1NVFsbnlkdWo5enV1TjNtaUJjOE9NSmhuclR0WWlaOUk4UVRGUjVoNkVtL0dNS1JUMFJsRmc0UkdDbzRGYlJzeUdDekgvQk91ZlJTUU1kTnhVRFExUy80TDQ3anoxeWlHZm9ZeVJIejRldHlUZlpTQ3lPV2JYVlpVMGVVRUl3WURicklnUUZFREFlcTcrS0liMmIvaEZOTGNXd2E5UWorQlVRVTY2cllVREljcFRLMFUzV3NQV3FmanJFN2NOZ2ZHRlJUQm9NSWM1MldFMGdlbUxiekNrQ0s5WU9ReVlzVVFOSEdmUmdSdGhCcjZQbzVDa3JJVlY3V25ZdVp0SnJsaEM1U243blVDNlhHaFZ5NUZ1UUMxY2dUNzhkdUlDZnlobzBOTVpQa2VQNlZwVzltL2N5TkNoSnFCWHNEMTFPcUZBanNZU0kzRmY1T2syZmE5QVBYV3d5ZlI4TW1vd3lxUEVzTVJVYmsvYjRBNTlJMGtqd0VBQUE9In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjQsIm5yb3ciOjR9LCJyZGYiOiJINHNJQUFBQUFBQUFBMzFSd1VvRE1SRE5abE5MRjZ5QytCbmRnd2lDQjFtaGVPdkZVeEV2Y1p2dExxYkpzcnUxUFFoNjB6L3dSenoyS3ZnQjRsblJMMUR3SkYwblRhSTJpSWZKdkV4bTVzMmJISGI3VzBFL1FBaGg1Qk9Dc0ErUVlEZzhSRkJMK1NsQy9vYUtnbC9WSGg2MVlXMUxCU3VjblRGZUFscGZ2T29vaVZNNU1SaW5pVlBUaURrdGJjbDNvNFRHbFN3QXpSMXEvT05WRzF3N1pONkJCVDJkNGRmLzlVWnQxVHZhZWIwZHZsMGRSWHNmcytONGRoUHRkaDk3RisySGFKOWZ2MnlldjBPT25lRVo3QW5zSHV6T2xTTG9pRmtweEtvZlpLd3kyQy9aMUlaSGpBcURteVVkNVZ4Vi9qbHdNS0FWRFpNQ21qdUVyVUpPUWt1cUpzU1hjTlIxL2FuVkxTVTNaVjVsVWtBcVZuL2FjRmk4d2dtc2pZVnFQZWpFNlZpY2RyYlZKR2I1eU5CNVppbS9zS0lrVmtIRHJweUpZU2FZWFJPbko0eWJTeHNrTEJTRWVaRUp1NmdBb21WWXlZcmF2Q0NXM0ViMHo4Mi9BSEp1Uk1iQkFnQUEifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["diet"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["samples"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"chow","2":"F","3":"23.89338","4":"225"},{"1":"chow","2":"M","3":"30.96381","4":"224"},{"1":"hf","2":"F","3":"26.26890","4":"200"},{"1":"hf","2":"M","3":"34.84793","4":"197"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+{"columns":[{"label":["diet"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sex"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["samples"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"chow","2":"F","3":"23.89338","4":"225"},{"1":"chow","2":"M","3":"30.96381","4":"224"},{"1":"hf","2":"F","3":"26.26890","4":"200"},{"1":"hf","2":"M","3":"34.84793","4":"197"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
@@ -458,8 +457,8 @@ y = \beta X + \alpha + \epsilon
 <p>First, we try a model with both variables but no interactions, using the formula <code>weight ~ diet + sex</code>. We use the <code>summary()</code> function to get some useful information about the model fit.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwxID0gbG0od2VpZ2h0IH4gZGlldCArIHNleCwgZGF0YT1taWNlKVxuc3VtbWFyeShtb2RlbDEpXG5gYGAifQ== -->
-<pre class="r"><code>model1 = lm(weight ~ diet + sex, data=mice)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwxIDwtIGxtKHdlaWdodCB+IGRpZXQgKyBzZXgsIGRhdGE9bWljZSlcbnN1bW1hcnkobW9kZWwxKVxuYGBgIn0= -->
+<pre class="r"><code>model1 &lt;- lm(weight ~ diet + sex, data=mice)
 summary(model1)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHdlaWdodCB+IGRpZXQgKyBzZXgsIGRhdGEgPSBtaWNlKVxuXG5SZXNpZHVhbHM6XG4gICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCBcbi0xMS45NTg5ICAtMy4xMjc4ICAtMC4yMDM2ICAgMi41OTc1ICAyMy44MjY0IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgMjMuNTQyNSAgICAgMC4yNzI1ICA4Ni40MDEgICA8MmUtMTYgKioqXG5kaWV0aGYgICAgICAgIDMuMTIxMSAgICAgMC4zMjI1ICAgOS42NzkgICA8MmUtMTYgKioqXG5zZXhNICAgICAgICAgIDcuNzc1MyAgICAgMC4zMjE4ICAyNC4xNjMgICA8MmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDQuNjY2IG9uIDgzOCBkZWdyZWVzIG9mIGZyZWVkb21cbiAgKDUgb2JzZXJ2YXRpb25zIGRlbGV0ZWQgZHVlIHRvIG1pc3NpbmduZXNzKVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC40NDU5LFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC40NDQ2IFxuRi1zdGF0aXN0aWM6IDMzNy4yIG9uIDIgYW5kIDgzOCBERiwgIHAtdmFsdWU6IDwgMi4yZS0xNlxuIn0= -->
@@ -489,8 +488,8 @@ F-statistic: 337.2 on 2 and 838 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>At a glance, this model looks good. Let’s try to fit an interaction between the two variables. Note that the expression <code>weight ~ diet * sex</code> is equivalent to <code>weight ~ diet + sex + diet:sex</code>, where <code>diet:sex</code> is the interaction term.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwyID0gbG0od2VpZ2h0IH4gZGlldCAqIHNleCwgZGF0YT1taWNlKVxuc3VtbWFyeShtb2RlbDIpXG5gYGAifQ== -->
-<pre class="r"><code>model2 = lm(weight ~ diet * sex, data=mice)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwyIDwtIGxtKHdlaWdodCB+IGRpZXQgKiBzZXgsIGRhdGE9bWljZSlcbnN1bW1hcnkobW9kZWwyKVxuYGBgIn0= -->
+<pre class="r"><code>model2 &lt;- lm(weight ~ diet * sex, data=mice)
 summary(model2)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IHdlaWdodCB+IGRpZXQgKiBzZXgsIGRhdGEgPSBtaWNlKVxuXG5SZXNpZHVhbHM6XG4gICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCBcbi0xMi4zNjc5ICAtMy4xMDg5ICAtMC4yODM0ICAgMi41NzY2ICAyNC4yMjExIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgMjMuODkzNCAgICAgMC4zMTAyICA3Ny4wMjQgIDwgMmUtMTYgKioqXG5kaWV0aGYgICAgICAgIDIuMzc1NSAgICAgMC40NTIyICAgNS4yNTMgIDEuOWUtMDcgKioqXG5zZXhNICAgICAgICAgIDcuMDcwNCAgICAgMC40Mzk3ICAxNi4wODEgIDwgMmUtMTYgKioqXG5kaWV0aGY6c2V4TSAgIDEuNTA4NiAgICAgMC42NDMyICAgMi4zNDUgICAwLjAxOTIgKiAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDQuNjUzIG9uIDgzNyBkZWdyZWVzIG9mIGZyZWVkb21cbiAgKDUgb2JzZXJ2YXRpb25zIGRlbGV0ZWQgZHVlIHRvIG1pc3NpbmduZXNzKVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC40NDk1LFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC40NDc2IFxuRi1zdGF0aXN0aWM6IDIyNy45IG9uIDMgYW5kIDgzNyBERiwgIHAtdmFsdWU6IDwgMi4yZS0xNlxuIn0= -->
@@ -539,8 +538,8 @@ diethf:sexM 0.2460406 2.771157</code></pre>
 <p>Let’s use the <code>summary()</code> function to get some quick summary stats. Turns out the residuals’ mean is very close to zero, but has a high variance.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzaWR1YWxzID0gbW9kZWwyJHJlc2lkdWFsc1xuc3VtbWFyeShyZXNpZHVhbHMsIGRpZ2l0cz0yMilcbmBgYCJ9 -->
-<pre class="r"><code>residuals = model2$residuals
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzaWR1YWxzIDwtIG1vZGVsMiRyZXNpZHVhbHNcbnN1bW1hcnkocmVzaWR1YWxzLCBkaWdpdHM9MjIpXG5gYGAifQ== -->
+<pre class="r"><code>residuals &lt;- model2$residuals
 summary(residuals, digits=22)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiICAgIE1pbi4gIDFzdCBRdS4gICBNZWRpYW4gICAgIE1lYW4gIDNyZCBRdS4gICAgIE1heC4gXG4tMTIuMzY3OSAgLTMuMTA4OSAgLTAuMjgzNCAgIDAuMDAwMCAgIDIuNTc2NiAgMjQuMjIxMSBcbiJ9 -->
@@ -563,8 +562,8 @@ summary(residuals, digits=22)</code></pre>
 <p>From the box plot and QQ-plot below, it seems that the distribution of the residuals has a long upper tail, but seems fairly normally distributed.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA9IHRpYmJsZShyZXNpZHVhbHM9cmVzaWR1YWxzKVxuZ2dwbG90KHRlbXAsIGFlcyh4PScnLCByZXNpZHVhbHMpKSArXG4gIGdlb21fYm94cGxvdChuYS5ybT1UUlVFKSArXG4gIGxhYnMoeD0nJywgeT0nUmVzaWR1YWxzJywgdGl0bGU9J0JveCBwbG90IG9mIHJlc2lkdWFscycpXG5gYGAifQ== -->
-<pre class="r"><code>temp = tibble(residuals=residuals)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA8LSB0aWJibGUocmVzaWR1YWxzPXJlc2lkdWFscylcbmdncGxvdCh0ZW1wLCBhZXMoeD0nJywgcmVzaWR1YWxzKSkgK1xuICBnZW9tX2JveHBsb3QobmEucm09VFJVRSkgK1xuICBsYWJzKHg9JycsIHk9J1Jlc2lkdWFscycsIHRpdGxlPSdCb3ggcGxvdCBvZiByZXNpZHVhbHMnKVxuYGBgIn0= -->
+<pre class="r"><code>temp &lt;- tibble(residuals=residuals)
 ggplot(temp, aes(x='', residuals)) +
   geom_boxplot(na.rm=TRUE) +
   labs(x='', y='Residuals', title='Box plot of residuals')</code></pre>
@@ -576,8 +575,8 @@ ggplot(temp, aes(x='', residuals)) +
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA9IHRpYmJsZShyZXNpZHVhbHM9cmVzaWR1YWxzKVxuZ2dwbG90KHRlbXAsIGFlcyhzYW1wbGU9cmVzaWR1YWxzKSkgK1xuICBzdGF0X3FxKG5hLnJtPVRSVUUpICsgc3RhdF9xcV9saW5lKG5hLnJtPVRSVUUpICtcbiAgbGFicyh4PSd0aGVvcmV0aWNhbCcsIHk9J3NhbXBsZScsIHRpdGxlPSdRUS1wbG90JylcbmBgYCJ9 -->
-<pre class="r"><code>temp = tibble(residuals=residuals)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVtcCA8LSB0aWJibGUocmVzaWR1YWxzPXJlc2lkdWFscylcbmdncGxvdCh0ZW1wLCBhZXMoc2FtcGxlPXJlc2lkdWFscykpICtcbiAgc3RhdF9xcShuYS5ybT1UUlVFKSArIHN0YXRfcXFfbGluZShuYS5ybT1UUlVFKSArXG4gIGxhYnMoeD0ndGhlb3JldGljYWwnLCB5PSdzYW1wbGUnLCB0aXRsZT0nUVEtcGxvdCcpXG5gYGAifQ== -->
+<pre class="r"><code>temp &lt;- tibble(residuals=residuals)
 ggplot(temp, aes(sample=residuals)) +
   stat_qq(na.rm=TRUE) + stat_qq_line(na.rm=TRUE) +
   labs(x='theoretical', y='sample', title='QQ-plot')</code></pre>
@@ -593,8 +592,8 @@ ggplot(temp, aes(sample=residuals)) +
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGV2dG9vbHM6OnNlc3Npb25faW5mbygpXG5gYGAifQ== -->
 <pre class="r"><code>devtools::session_info()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi4pSAIFNlc3Npb24gaW5mbyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbiBzZXR0aW5nICB2YWx1ZSAgICAgICAgICAgICAgICAgICAgICAgXG4gdmVyc2lvbiAgUiB2ZXJzaW9uIDMuNC40ICgyMDE4LTAzLTE1KVxuIG9zICAgICAgIFVidW50dSAxNi4wNC42IExUUyAgICAgICAgICBcbiBzeXN0ZW0gICB4ODZfNjQsIGxpbnV4LWdudSAgICAgICAgICAgXG4gdWkgICAgICAgUlN0dWRpbyAgICAgICAgICAgICAgICAgICAgIFxuIGxhbmd1YWdlIGVuX1VTICAgICAgICAgICAgICAgICAgICAgICBcbiBjb2xsYXRlICBlbl9VUy5VVEYtOCAgICAgICAgICAgICAgICAgXG4gY3R5cGUgICAgZW5fVVMuVVRGLTggICAgICAgICAgICAgICAgIFxuIHR6ICAgICAgIEF0bGFudGljL0Zhcm9lICAgICAgICAgICAgICBcbiBkYXRlICAgICAyMDE5LTA2LTA1ICAgICAgICAgICAgICAgICAgXG5cbuKUgCBQYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbiBwYWNrYWdlICAgICAqIHZlcnNpb24gZGF0ZSAgICAgICBsaWIgc291cmNlICAgICAgICBcbiBhc3NlcnR0aGF0ICAgIDAuMi4xICAgMjAxOS0wMy0yMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBiYWNrcG9ydHMgICAgIDEuMS4zICAgMjAxOC0xMi0xNCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBiYXNlNjRlbmMgICAgIDAuMS0zICAgMjAxNS0wNy0yOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBjYWxsciAgICAgICAgIDMuMi4wICAgMjAxOS0wMy0xNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBjbGkgICAgICAgICAgIDEuMS4wICAgMjAxOS0wMy0xOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBjb2xvcnNwYWNlICAgIDEuNC0wICAgMjAxOS0wMS0xMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBjcmF5b24gICAgICAgIDEuMy40ICAgMjAxNy0wOS0xNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkZXNjICAgICAgICAgIDEuMi4wICAgMjAxOC0wNS0wMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkZXZ0b29scyAgICAqIDIuMC4yICAgMjAxOS0wNC0wOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkaWdlc3QgICAgICAgIDAuNi4xOCAgMjAxOC0xMC0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkcGx5ciAgICAgICAqIDAuOC4xICAgMjAxOS0wNS0xNCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBldmFsdWF0ZSAgICAgIDAuMTMgICAgMjAxOS0wMi0xMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBmcyAgICAgICAgICAgIDEuMy4xICAgMjAxOS0wNS0wNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBnZ3Bsb3QyICAgICAqIDMuMS4wICAgMjAxOC0xMC0yNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBnbHVlICAgICAgICAgIDEuMy4xICAgMjAxOS0wMy0xMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBndGFibGUgICAgICAgIDAuMi4wICAgMjAxNi0wMi0yNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBobXMgICAgICAgICAgIDAuNC4yICAgMjAxOC0wMy0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBodG1sdG9vbHMgICAgIDAuMy42ICAgMjAxNy0wNC0yOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBqc29ubGl0ZSAgICAgIDEuNiAgICAgMjAxOC0xMi0wNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBrbml0ciAgICAgICAgIDEuMjEgICAgMjAxOC0xMi0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBsYWJlbGluZyAgICAgIDAuMyAgICAgMjAxNC0wOC0yMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBsYXp5ZXZhbCAgICAgIDAuMi4xICAgMjAxNy0xMC0yOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBtYWdyaXR0ciAgICAqIDEuNSAgICAgMjAxNC0xMS0yMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBtZW1vaXNlICAgICAgIDEuMS4wICAgMjAxNy0wNC0yMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBtdW5zZWxsICAgICAgIDAuNS4wICAgMjAxOC0wNi0xMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwaWxsYXIgICAgICAgIDEuMy4xICAgMjAxOC0xMi0xNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwa2didWlsZCAgICAgIDEuMC4zICAgMjAxOS0wMy0yMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwa2djb25maWcgICAgIDIuMC4yICAgMjAxOC0wOC0xNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwa2dsb2FkICAgICAgIDEuMC4yICAgMjAxOC0xMC0yOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwbHlyICAgICAgICAgIDEuOC40ICAgMjAxNi0wNi0wOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwcmV0dHl1bml0cyAgIDEuMC4yICAgMjAxNS0wNy0xMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwcm9jZXNzeCAgICAgIDMuMy4xICAgMjAxOS0wNS0wOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwcyAgICAgICAgICAgIDEuMy4wICAgMjAxOC0xMi0yMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwdXJyciAgICAgICAgIDAuMy4wICAgMjAxOS0wMS0yNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBSNiAgICAgICAgICAgIDIuNC4wICAgMjAxOS0wMi0xNCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBSY3BwICAgICAgICAgIDEuMC4xICAgMjAxOS0wMy0xNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiByZWFkciAgICAgICAqIDEuMy4xICAgMjAxOC0xMi0yMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiByZW1vdGVzICAgICAgIDIuMC40ICAgMjAxOS0wNC0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiByZXNoYXBlMiAgICAgIDEuNC4zICAgMjAxNy0xMi0xMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBybGFuZyAgICAgICAgIDAuMy40ICAgMjAxOS0wNC0wNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBybWFya2Rvd24gICAgIDEuMTEgICAgMjAxOC0xMi0wOCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBycHJvanJvb3QgICAgIDEuMy0yICAgMjAxOC0wMS0wMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiByc3R1ZGlvYXBpICAgIDAuOS4wICAgMjAxOS0wMS0wOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBzY2FsZXMgICAgICAgIDEuMC4wICAgMjAxOC0wOC0wOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBzZXNzaW9uaW5mbyAgIDEuMS4xICAgMjAxOC0xMS0wNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBzdHJpbmdpICAgICAgIDEuMy4xICAgMjAxOS0wMi0xMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBzdHJpbmdyICAgICAgIDEuNC4wICAgMjAxOS0wMi0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiB0ZXN0dGhhdCAgICAgIDIuMC4xICAgMjAxOC0xMC0xMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiB0aWJibGUgICAgICAqIDIuMS4xICAgMjAxOS0wMy0xNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiB0aWR5c2VsZWN0ICAgIDAuMi41ICAgMjAxOC0xMC0xMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiB1c2V0aGlzICAgICAqIDEuNS4wICAgMjAxOS0wNC0wNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiB3aXRociAgICAgICAgIDIuMS4yICAgMjAxOC0wMy0xNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiB4ZnVuICAgICAgICAgIDAuNSAgICAgMjAxOS0wMi0yMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiB5YW1sICAgICAgICAgIDIuMi4wICAgMjAxOC0wNy0yNSBbMV0gQ1JBTiAoUiAzLjQuNClcblxuWzFdIC9ob21lL29sYXZ1ci9SL3g4Nl82NC1wYy1saW51eC1nbnUtbGlicmFyeS8zLjRcblsyXSAvdXNyL2xvY2FsL2xpYi9SL3NpdGUtbGlicmFyeVxuWzNdIC91c3IvbGliL1Ivc2l0ZS1saWJyYXJ5XG5bNF0gL3Vzci9saWIvUi9saWJyYXJ5XG4ifQ== -->
-<pre><code>─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<!-- rnb-output-begin eyJkYXRhIjoi4pSAIFNlc3Npb24gaW5mbyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbiBzZXR0aW5nICB2YWx1ZSAgICAgICAgICAgICAgICAgICAgICAgXG4gdmVyc2lvbiAgUiB2ZXJzaW9uIDMuNC40ICgyMDE4LTAzLTE1KVxuIG9zICAgICAgIFVidW50dSAxNi4wNC42IExUUyAgICAgICAgICBcbiBzeXN0ZW0gICB4ODZfNjQsIGxpbnV4LWdudSAgICAgICAgICAgXG4gdWkgICAgICAgUlN0dWRpbyAgICAgICAgICAgICAgICAgICAgIFxuIGxhbmd1YWdlIGVuX1VTICAgICAgICAgICAgICAgICAgICAgICBcbiBjb2xsYXRlICBlbl9VUy5VVEYtOCAgICAgICAgICAgICAgICAgXG4gY3R5cGUgICAgZW5fVVMuVVRGLTggICAgICAgICAgICAgICAgIFxuIHR6ICAgICAgIEF0bGFudGljL0Zhcm9lICAgICAgICAgICAgICBcbiBkYXRlICAgICAyMDE5LTA4LTIzICAgICAgICAgICAgICAgICAgXG5cbuKUgCBQYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbiBwYWNrYWdlICAgICAgKiB2ZXJzaW9uIGRhdGUgICAgICAgbGliIHNvdXJjZSAgICAgICAgXG4gYXNzZXJ0dGhhdCAgICAgMC4yLjEgICAyMDE5LTAzLTIxIFsxXSBDUkFOIChSIDMuNC40KVxuIGJhY2twb3J0cyAgICAgIDEuMS40ICAgMjAxOS0wNC0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBiYXNlNjRlbmMgICAgICAwLjEtMyAgIDIwMTUtMDctMjggWzFdIENSQU4gKFIgMy40LjQpXG4gY2FsbHIgICAgICAgICAgMy4yLjAgICAyMDE5LTAzLTE1IFsxXSBDUkFOIChSIDMuNC40KVxuIGNsaSAgICAgICAgICAgIDEuMS4wICAgMjAxOS0wMy0xOSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBjb2RldG9vbHMgICAgICAwLjItMTUgIDIwMTYtMTAtMDUgWzRdIENSQU4gKFIgMy4zLjEpXG4gY29sb3JzcGFjZSAgICAgMS40LTEgICAyMDE5LTAzLTE4IFsxXSBDUkFOIChSIDMuNC40KVxuIGNyYXlvbiAgICAgICAgIDEuMy40ICAgMjAxNy0wOS0xNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkZXNjICAgICAgICAgICAxLjIuMCAgIDIwMTgtMDUtMDEgWzFdIENSQU4gKFIgMy40LjQpXG4gZGV2dG9vbHMgICAgICogMi4wLjIgICAyMDE5LTA0LTA4IFsxXSBDUkFOIChSIDMuNC40KVxuIGRpZ2VzdCAgICAgICAgIDAuNi4xOSAgMjAxOS0wNS0yMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBkcGx5ciAgICAgICAgKiAwLjguMSAgIDIwMTktMDUtMTQgWzFdIENSQU4gKFIgMy40LjQpXG4gZXZhbHVhdGUgICAgICAgMC4xNCAgICAyMDE5LTA1LTI4IFsxXSBDUkFOIChSIDMuNC40KVxuIGZhbnNpICAgICAgICAgIDAuNC4wICAgMjAxOC0xMC0wNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBmb3JlYWNoICAgICAgKiAxLjQuNCAgIDIwMTctMTItMTIgWzFdIENSQU4gKFIgMy40LjQpXG4gZnMgICAgICAgICAgICAgMS4zLjEgICAyMDE5LTA1LTA2IFsxXSBDUkFOIChSIDMuNC40KVxuIGdncGxvdDIgICAgICAqIDMuMS4xICAgMjAxOS0wNC0wNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBnbHVlICAgICAgICAgICAxLjMuMSAgIDIwMTktMDMtMTIgWzFdIENSQU4gKFIgMy40LjQpXG4gZ3RhYmxlICAgICAgICAgMC4zLjAgICAyMDE5LTAzLTI1IFsxXSBDUkFOIChSIDMuNC40KVxuIGhtcyAgICAgICAgICAgIDAuNC4yICAgMjAxOC0wMy0xMCBbMV0gQ1JBTiAoUiAzLjQuNClcbiBodG1sdG9vbHMgICAgICAwLjMuNiAgIDIwMTctMDQtMjggWzFdIENSQU4gKFIgMy40LjQpXG4gaXRlcmF0b3JzICAgICogMS4wLjEwICAyMDE4LTA3LTEzIFsxXSBDUkFOIChSIDMuNC40KVxuIGl0ZXJ0b29scyAgICAqIDAuMS0zICAgMjAxNC0wMy0xMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBqc29ubGl0ZSAgICAgICAxLjYgICAgIDIwMTgtMTItMDcgWzFdIENSQU4gKFIgMy40LjQpXG4ga25pdHIgICAgICAgICAgMS4yMyAgICAyMDE5LTA1LTE4IFsxXSBDUkFOIChSIDMuNC40KVxuIGxhYmVsaW5nICAgICAgIDAuMyAgICAgMjAxNC0wOC0yMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBsYXp5ZXZhbCAgICAgICAwLjIuMiAgIDIwMTktMDMtMTUgWzFdIENSQU4gKFIgMy40LjQpXG4gbHVicmlkYXRlICAgICogMS43LjQgICAyMDE4LTA0LTExIFsxXSBDUkFOIChSIDMuNC40KVxuIG1hZ3JpdHRyICAgICAqIDEuNSAgICAgMjAxNC0xMS0yMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBtZW1vaXNlICAgICAgICAxLjEuMCAgIDIwMTctMDQtMjEgWzFdIENSQU4gKFIgMy40LjQpXG4gbWlzc0ZvcmVzdCAgICogMS40ICAgICAyMDEzLTEyLTMxIFsxXSBDUkFOIChSIDMuNC40KVxuIG11bnNlbGwgICAgICAgIDAuNS4wICAgMjAxOC0wNi0xMiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwaWxsYXIgICAgICAgICAxLjQuMSAgIDIwMTktMDUtMjggWzFdIENSQU4gKFIgMy40LjQpXG4gcGtnYnVpbGQgICAgICAgMS4wLjMgICAyMDE5LTAzLTIwIFsxXSBDUkFOIChSIDMuNC40KVxuIHBrZ2NvbmZpZyAgICAgIDIuMC4yICAgMjAxOC0wOC0xNiBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwa2dsb2FkICAgICAgICAxLjAuMiAgIDIwMTgtMTAtMjkgWzFdIENSQU4gKFIgMy40LjQpXG4gcGx5ciAgICAgICAgICAgMS44LjQgICAyMDE2LTA2LTA4IFsxXSBDUkFOIChSIDMuNC40KVxuIHByZXR0eXVuaXRzICAgIDEuMC4yICAgMjAxNS0wNy0xMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiBwcm9jZXNzeCAgICAgICAzLjMuMSAgIDIwMTktMDUtMDggWzFdIENSQU4gKFIgMy40LjQpXG4gcHMgICAgICAgICAgICAgMS4zLjAgICAyMDE4LTEyLTIxIFsxXSBDUkFOIChSIDMuNC40KVxuIHB1cnJyICAgICAgICAgIDAuMy4yICAgMjAxOS0wMy0xNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBSNiAgICAgICAgICAgICAyLjQuMCAgIDIwMTktMDItMTQgWzFdIENSQU4gKFIgMy40LjQpXG4gcmFuZG9tRm9yZXN0ICogNC42LTE0ICAyMDE4LTAzLTI1IFsxXSBDUkFOIChSIDMuNC40KVxuIFJjcHAgICAgICAgICAgIDEuMC4xICAgMjAxOS0wMy0xNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiByZWFkciAgICAgICAgKiAxLjMuMSAgIDIwMTgtMTItMjEgWzFdIENSQU4gKFIgMy40LjQpXG4gcmVtb3RlcyAgICAgICAgMi4wLjQgICAyMDE5LTA0LTEwIFsxXSBDUkFOIChSIDMuNC40KVxuIHJlc2hhcGUyICAgICAgIDEuNC4zICAgMjAxNy0xMi0xMSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBybGFuZyAgICAgICAgICAwLjMuNCAgIDIwMTktMDQtMDcgWzFdIENSQU4gKFIgMy40LjQpXG4gcm1hcmtkb3duICAgICAgMS4xMyAgICAyMDE5LTA1LTIyIFsxXSBDUkFOIChSIDMuNC40KVxuIHJwcm9qcm9vdCAgICAgIDEuMy0yICAgMjAxOC0wMS0wMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiByc3R1ZGlvYXBpICAgICAwLjEwICAgIDIwMTktMDMtMTkgWzFdIENSQU4gKFIgMy40LjQpXG4gc2NhbGVzICAgICAgICAgMS4wLjAgICAyMDE4LTA4LTA5IFsxXSBDUkFOIChSIDMuNC40KVxuIHNlc3Npb25pbmZvICAgIDEuMS4xICAgMjAxOC0xMS0wNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiBzdHJpbmdpICAgICAgICAxLjQuMyAgIDIwMTktMDMtMTIgWzFdIENSQU4gKFIgMy40LjQpXG4gc3RyaW5nciAgICAgICAgMS40LjAgICAyMDE5LTAyLTEwIFsxXSBDUkFOIChSIDMuNC40KVxuIHRlc3R0aGF0ICAgICAgIDIuMS4xICAgMjAxOS0wNC0yMyBbMV0gQ1JBTiAoUiAzLjQuNClcbiB0aWJibGUgICAgICAgKiAyLjEuMiAgIDIwMTktMDUtMjkgWzFdIENSQU4gKFIgMy40LjQpXG4gdGlkeXNlbGVjdCAgICAgMC4yLjUgICAyMDE4LTEwLTExIFsxXSBDUkFOIChSIDMuNC40KVxuIHVzZXRoaXMgICAgICAqIDEuNS4wICAgMjAxOS0wNC0wNyBbMV0gQ1JBTiAoUiAzLjQuNClcbiB1dGY4ICAgICAgICAgICAxLjEuNCAgIDIwMTgtMDUtMjQgWzFdIENSQU4gKFIgMy40LjQpXG4gdmN0cnMgICAgICAgICAgMC4xLjAgICAyMDE4LTExLTI5IFsxXSBDUkFOIChSIDMuNC40KVxuIHdpdGhyICAgICAgICAgIDIuMS4yICAgMjAxOC0wMy0xNSBbMV0gQ1JBTiAoUiAzLjQuNClcbiB4ZnVuICAgICAgICAgICAwLjcgICAgIDIwMTktMDUtMTQgWzFdIENSQU4gKFIgMy40LjQpXG4geWFtbCAgICAgICAgICAgMi4yLjAgICAyMDE4LTA3LTI1IFsxXSBDUkFOIChSIDMuNC40KVxuIHplYWxsb3QgICAgICAgIDAuMS4wICAgMjAxOC0wMS0yOCBbMV0gQ1JBTiAoUiAzLjQuNClcblxuWzFdIC9ob21lL29sYXZ1ci9SL3g4Nl82NC1wYy1saW51eC1nbnUtbGlicmFyeS8zLjRcblsyXSAvdXNyL2xvY2FsL2xpYi9SL3NpdGUtbGlicmFyeVxuWzNdIC91c3IvbGliL1Ivc2l0ZS1saWJyYXJ5XG5bNF0gL3Vzci9saWIvUi9saWJyYXJ5XG4ifQ== -->
+<pre><code>─ Session info ──────────────────────────────────────────────────────────────────────────────────────────────────────
  setting  value                       
  version  R version 3.4.4 (2018-03-15)
  os       Ubuntu 16.04.6 LTS          
@@ -604,64 +603,75 @@ ggplot(temp, aes(sample=residuals)) +
  collate  en_US.UTF-8                 
  ctype    en_US.UTF-8                 
  tz       Atlantic/Faroe              
- date     2019-06-05                  
+ date     2019-08-23                  
 
-─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- package     * version date       lib source        
- assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.4.4)
- backports     1.1.3   2018-12-14 [1] CRAN (R 3.4.4)
- base64enc     0.1-3   2015-07-28 [1] CRAN (R 3.4.4)
- callr         3.2.0   2019-03-15 [1] CRAN (R 3.4.4)
- cli           1.1.0   2019-03-19 [1] CRAN (R 3.4.4)
- colorspace    1.4-0   2019-01-13 [1] CRAN (R 3.4.4)
- crayon        1.3.4   2017-09-16 [1] CRAN (R 3.4.4)
- desc          1.2.0   2018-05-01 [1] CRAN (R 3.4.4)
- devtools    * 2.0.2   2019-04-08 [1] CRAN (R 3.4.4)
- digest        0.6.18  2018-10-10 [1] CRAN (R 3.4.4)
- dplyr       * 0.8.1   2019-05-14 [1] CRAN (R 3.4.4)
- evaluate      0.13    2019-02-12 [1] CRAN (R 3.4.4)
- fs            1.3.1   2019-05-06 [1] CRAN (R 3.4.4)
- ggplot2     * 3.1.0   2018-10-25 [1] CRAN (R 3.4.4)
- glue          1.3.1   2019-03-12 [1] CRAN (R 3.4.4)
- gtable        0.2.0   2016-02-26 [1] CRAN (R 3.4.4)
- hms           0.4.2   2018-03-10 [1] CRAN (R 3.4.4)
- htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.4.4)
- jsonlite      1.6     2018-12-07 [1] CRAN (R 3.4.4)
- knitr         1.21    2018-12-10 [1] CRAN (R 3.4.4)
- labeling      0.3     2014-08-23 [1] CRAN (R 3.4.4)
- lazyeval      0.2.1   2017-10-29 [1] CRAN (R 3.4.4)
- magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.4.4)
- memoise       1.1.0   2017-04-21 [1] CRAN (R 3.4.4)
- munsell       0.5.0   2018-06-12 [1] CRAN (R 3.4.4)
- pillar        1.3.1   2018-12-15 [1] CRAN (R 3.4.4)
- pkgbuild      1.0.3   2019-03-20 [1] CRAN (R 3.4.4)
- pkgconfig     2.0.2   2018-08-16 [1] CRAN (R 3.4.4)
- pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.4.4)
- plyr          1.8.4   2016-06-08 [1] CRAN (R 3.4.4)
- prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.4.4)
- processx      3.3.1   2019-05-08 [1] CRAN (R 3.4.4)
- ps            1.3.0   2018-12-21 [1] CRAN (R 3.4.4)
- purrr         0.3.0   2019-01-27 [1] CRAN (R 3.4.4)
- R6            2.4.0   2019-02-14 [1] CRAN (R 3.4.4)
- Rcpp          1.0.1   2019-03-17 [1] CRAN (R 3.4.4)
- readr       * 1.3.1   2018-12-21 [1] CRAN (R 3.4.4)
- remotes       2.0.4   2019-04-10 [1] CRAN (R 3.4.4)
- reshape2      1.4.3   2017-12-11 [1] CRAN (R 3.4.4)
- rlang         0.3.4   2019-04-07 [1] CRAN (R 3.4.4)
- rmarkdown     1.11    2018-12-08 [1] CRAN (R 3.4.4)
- rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.4.4)
- rstudioapi    0.9.0   2019-01-09 [1] CRAN (R 3.4.4)
- scales        1.0.0   2018-08-09 [1] CRAN (R 3.4.4)
- sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.4.4)
- stringi       1.3.1   2019-02-13 [1] CRAN (R 3.4.4)
- stringr       1.4.0   2019-02-10 [1] CRAN (R 3.4.4)
- testthat      2.0.1   2018-10-13 [1] CRAN (R 3.4.4)
- tibble      * 2.1.1   2019-03-16 [1] CRAN (R 3.4.4)
- tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.4.4)
- usethis     * 1.5.0   2019-04-07 [1] CRAN (R 3.4.4)
- withr         2.1.2   2018-03-15 [1] CRAN (R 3.4.4)
- xfun          0.5     2019-02-20 [1] CRAN (R 3.4.4)
- yaml          2.2.0   2018-07-25 [1] CRAN (R 3.4.4)
+─ Packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package      * version date       lib source        
+ assertthat     0.2.1   2019-03-21 [1] CRAN (R 3.4.4)
+ backports      1.1.4   2019-04-10 [1] CRAN (R 3.4.4)
+ base64enc      0.1-3   2015-07-28 [1] CRAN (R 3.4.4)
+ callr          3.2.0   2019-03-15 [1] CRAN (R 3.4.4)
+ cli            1.1.0   2019-03-19 [1] CRAN (R 3.4.4)
+ codetools      0.2-15  2016-10-05 [4] CRAN (R 3.3.1)
+ colorspace     1.4-1   2019-03-18 [1] CRAN (R 3.4.4)
+ crayon         1.3.4   2017-09-16 [1] CRAN (R 3.4.4)
+ desc           1.2.0   2018-05-01 [1] CRAN (R 3.4.4)
+ devtools     * 2.0.2   2019-04-08 [1] CRAN (R 3.4.4)
+ digest         0.6.19  2019-05-20 [1] CRAN (R 3.4.4)
+ dplyr        * 0.8.1   2019-05-14 [1] CRAN (R 3.4.4)
+ evaluate       0.14    2019-05-28 [1] CRAN (R 3.4.4)
+ fansi          0.4.0   2018-10-05 [1] CRAN (R 3.4.4)
+ foreach      * 1.4.4   2017-12-12 [1] CRAN (R 3.4.4)
+ fs             1.3.1   2019-05-06 [1] CRAN (R 3.4.4)
+ ggplot2      * 3.1.1   2019-04-07 [1] CRAN (R 3.4.4)
+ glue           1.3.1   2019-03-12 [1] CRAN (R 3.4.4)
+ gtable         0.3.0   2019-03-25 [1] CRAN (R 3.4.4)
+ hms            0.4.2   2018-03-10 [1] CRAN (R 3.4.4)
+ htmltools      0.3.6   2017-04-28 [1] CRAN (R 3.4.4)
+ iterators    * 1.0.10  2018-07-13 [1] CRAN (R 3.4.4)
+ itertools    * 0.1-3   2014-03-12 [1] CRAN (R 3.4.4)
+ jsonlite       1.6     2018-12-07 [1] CRAN (R 3.4.4)
+ knitr          1.23    2019-05-18 [1] CRAN (R 3.4.4)
+ labeling       0.3     2014-08-23 [1] CRAN (R 3.4.4)
+ lazyeval       0.2.2   2019-03-15 [1] CRAN (R 3.4.4)
+ lubridate    * 1.7.4   2018-04-11 [1] CRAN (R 3.4.4)
+ magrittr     * 1.5     2014-11-22 [1] CRAN (R 3.4.4)
+ memoise        1.1.0   2017-04-21 [1] CRAN (R 3.4.4)
+ missForest   * 1.4     2013-12-31 [1] CRAN (R 3.4.4)
+ munsell        0.5.0   2018-06-12 [1] CRAN (R 3.4.4)
+ pillar         1.4.1   2019-05-28 [1] CRAN (R 3.4.4)
+ pkgbuild       1.0.3   2019-03-20 [1] CRAN (R 3.4.4)
+ pkgconfig      2.0.2   2018-08-16 [1] CRAN (R 3.4.4)
+ pkgload        1.0.2   2018-10-29 [1] CRAN (R 3.4.4)
+ plyr           1.8.4   2016-06-08 [1] CRAN (R 3.4.4)
+ prettyunits    1.0.2   2015-07-13 [1] CRAN (R 3.4.4)
+ processx       3.3.1   2019-05-08 [1] CRAN (R 3.4.4)
+ ps             1.3.0   2018-12-21 [1] CRAN (R 3.4.4)
+ purrr          0.3.2   2019-03-15 [1] CRAN (R 3.4.4)
+ R6             2.4.0   2019-02-14 [1] CRAN (R 3.4.4)
+ randomForest * 4.6-14  2018-03-25 [1] CRAN (R 3.4.4)
+ Rcpp           1.0.1   2019-03-17 [1] CRAN (R 3.4.4)
+ readr        * 1.3.1   2018-12-21 [1] CRAN (R 3.4.4)
+ remotes        2.0.4   2019-04-10 [1] CRAN (R 3.4.4)
+ reshape2       1.4.3   2017-12-11 [1] CRAN (R 3.4.4)
+ rlang          0.3.4   2019-04-07 [1] CRAN (R 3.4.4)
+ rmarkdown      1.13    2019-05-22 [1] CRAN (R 3.4.4)
+ rprojroot      1.3-2   2018-01-03 [1] CRAN (R 3.4.4)
+ rstudioapi     0.10    2019-03-19 [1] CRAN (R 3.4.4)
+ scales         1.0.0   2018-08-09 [1] CRAN (R 3.4.4)
+ sessioninfo    1.1.1   2018-11-05 [1] CRAN (R 3.4.4)
+ stringi        1.4.3   2019-03-12 [1] CRAN (R 3.4.4)
+ stringr        1.4.0   2019-02-10 [1] CRAN (R 3.4.4)
+ testthat       2.1.1   2019-04-23 [1] CRAN (R 3.4.4)
+ tibble       * 2.1.2   2019-05-29 [1] CRAN (R 3.4.4)
+ tidyselect     0.2.5   2018-10-11 [1] CRAN (R 3.4.4)
+ usethis      * 1.5.0   2019-04-07 [1] CRAN (R 3.4.4)
+ utf8           1.1.4   2018-05-24 [1] CRAN (R 3.4.4)
+ vctrs          0.1.0   2018-11-29 [1] CRAN (R 3.4.4)
+ withr          2.1.2   2018-03-15 [1] CRAN (R 3.4.4)
+ xfun           0.7     2019-05-14 [1] CRAN (R 3.4.4)
+ yaml           2.2.0   2018-07-25 [1] CRAN (R 3.4.4)
+ zeallot        0.1.0   2018-01-28 [1] CRAN (R 3.4.4)
 
 [1] /home/olavur/R/x86_64-pc-linux-gnu-library/3.4
 [2] /usr/local/lib/R/site-library
