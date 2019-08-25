@@ -1,5 +1,5 @@
 ---
-title: "Children case study 1"
+title: "Case 2.1 - Cleaning up a messy dataset"
 output:
   html_notebook:
     toc: true
@@ -15,7 +15,7 @@ We need to install a package for the specific imputation method we will be using
 install.packages("missForest")
 ```
 
-```{r}
+```{r message=FALSE}
 library(readr)  # For reading the data.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
@@ -34,7 +34,7 @@ We will also need the following script to make some of the plots in this noteboo
 
 We have saved this script somewhere on the computer, and run the script to load the functions in it. After running the script, we have the `multiplot()` function available.
 
-```{r}
+```{r message=FALSE}
 source("../multiplot.R")
 ```
 
@@ -44,9 +44,13 @@ source("../multiplot.R")
 
 The data we want to load is CSV. However, it doesn't use the standard comma delimitation as CSV files do; if we open the file in a text editor, we find that it uses semicolon. So we use `read_delim()` and specify `delim=';'`. Second, the first line in the file is not a proper entry in the CSV format, it is just a line of free text; we ignore this line using the `skip=1` argument. Finally, the file contains some whitespace, which will give our columns messy names with a bunch of spaces in them; we fix this using `trim_ws=TRUE`.
 
-```{r}
+```{r message=FALSE}
 data <- read_delim('weight_height_data.csv', delim=';', skip=1, trim_ws=TRUE)
 ```
+
+You can download the data we use in this case here:
+
+> https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/weight_height_data.csv
 
 As in previous examples, we will give the variables convenient names, remove unnecessary variables, and convert character variables to factors.
 

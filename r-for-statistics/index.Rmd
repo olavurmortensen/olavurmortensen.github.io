@@ -81,9 +81,9 @@ An overview of the course program is in the table below.
 
 Time | **Tuesday** | **Wednesday** | **Friday**
 ---|---|---|----
-8:30-11:30 | Introduction and RStudio | Case study 2 | Case study 4
-11:30-12:30 | Lunch | Lunch | Lunch
-12:30-15:30 | Case study 1 | Case study 3 | Workshop and exam
+8:30-11:30 | Introduction and R/RStudio | Case study 2 | Case study 4
+12:00-12:30 | Lunch | Lunch | Lunch
+12:30-16:00 | Case study 1 | Case study 3 | Workshop and exam
 
 Every case study session will include a small hands-on exercise session, a summary, and a coffee break.
 
@@ -111,5 +111,20 @@ Below is an overview of all the case study notebooks.
 
 Number | Description | Notebook
 ---|---|---
-1.1 | Reading data, plotting, and t test. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study1.nb.html)
-1.2 | Linear regression and more plotting. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/study2.nb.html)
+1.1 | Reading data, plotting, and t test. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/t-test.nb.html)
+1.2 | Linear regression and more plotting. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/linear_regression.nb.html)
+2.1 | Cleaning up messy data. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/data_cleanup.nb.html)
+2.2 | Logistic regression. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/logistic_regression.nb.html)
+3.1 | Working with map data. | **TODO**
+3.2 | Genomics with Bioconductor. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html)
+
+
+
+
+
+
+
+
+
+
+

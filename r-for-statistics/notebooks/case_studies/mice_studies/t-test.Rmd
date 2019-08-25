@@ -1,5 +1,5 @@
 ---
-title: "Mouse weight case study 1"
+title: "Case 1.1 - Simple statistics workflow in R"
 output:
   html_notebook:
     toc: true
@@ -28,7 +28,7 @@ install.packages('devtools')
 
 Next, we load the packages we need.
 
-```{r}
+```{r message=FALSE}
 library(readr)  # For reading data.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
@@ -49,7 +49,7 @@ download.file(url, 'mice_pheno.csv')
 
 We read the data from the CSV file we just downloaded. Below, we pass the relative path to the `read_csv()` function; in this case, the file is in our current working directory.
 
-```{r}
+```{r message=FALSE}
 # Read CSV file into a tibble.
 mice <- read_csv('mice_pheno.csv')
 ```

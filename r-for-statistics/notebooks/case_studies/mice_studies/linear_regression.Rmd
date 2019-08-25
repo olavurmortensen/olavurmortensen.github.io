@@ -1,5 +1,5 @@
 ---
-title: "Mouse weight case study 2"
+title: "Case 1.2 - Statistics workflow in R continued"
 output:
   html_notebook:
     toc: true
@@ -8,7 +8,7 @@ output:
 
 In this case study, we will again be looking into the bodyweight of mice, but this time we will include the sex variable. Our hypothesis is that both of our explanatory variables, diet and sex, have an effect on our response, weight, so it will be interesting to analyse these variables jointly.
 
-```{r}
+```{r message=FALSE}
 library(readr)  # For reading data.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
@@ -21,7 +21,7 @@ library(devtools)  # For printing the session info at the end of the notebook.
 
 Assuming we have already downloaded the data in the previous case study, we simply read it.
 
-```{r}
+```{r message=FALSE}
 mice <- read_csv('mice_pheno.csv')
 ```
 

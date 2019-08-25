@@ -1,5 +1,5 @@
 ---
-title: "Manipulating and plotting genomic data"
+title: "Case 3.2 - Manipulating and plotting genomic data"
 output:
   html_notebook:
     toc: true
@@ -234,9 +234,9 @@ We did it! We plotted some experimental data along with genomic annotations! So 
 * Packages in R sometimes contain useful metadata, in this case we used information about genes in the human genome
 * Be careful when working with large datasets, and use `rm()` and `gc()` as much as you can
 * We learned some about some new R functions:
-  * The *filter* operation: `filter()`
-  * The *join* operation: `full_join()`
-  * The `paste0()` function
+    * The *filter* operation: `filter()`
+    * The *join* operation: `full_join()`
+    * The `paste0()` function
 
 ```{r}
 devtools::session_info()
