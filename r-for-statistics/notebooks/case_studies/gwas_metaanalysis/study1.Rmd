@@ -38,6 +38,12 @@ uc = uc %>% dplyr::select(c('hm_rsid', 'hm_chrom', 'hm_pos', 'hm_beta'))
 cd = cd %>% dplyr::select(c('hm_rsid', 'hm_chrom', 'hm_pos', 'hm_beta'))
 ```
 
+When working with large datasets, `gc()` is your friend.
+
+```{r}
+gc()
+```
+
 
 ```{r}
 head(uc)
@@ -50,12 +56,15 @@ head(cd)
 
 ```{r}
 combined = inner_join(cd, uc, by=c('hm_rsid'='hm_rsid', 'hm_chrom'='hm_chrom', 'hm_pos'='hm_pos'))
+combined <- combined %>% 
+  rename('hm_rsid'='rsid', 'hm_chrom'='chrom', 'hm_pos'='pos', 'hm_beta.x'='beta_cd', 'hm_beta.y'='beta_uc')
 head(combined)
 ```
 
+Likewise, `rm()` is your friend when dealing with large data.
+
 ```{r}
-rm(uc)
-rm(cd)
+rm(uc, cd)
 gc()
 ```
 
@@ -65,7 +74,7 @@ gc()
 ```
 
 ```{r}
-combined_gr = GRanges(seqnames=combined$hm_chrom, IRanges(start=combined$hm_pos, end=combined$hm_pos))
+combined_gr = GRanges(seqnames=combined$chrom, IRanges(start=combined$pos, end=combined$pos))
 mcols(combined_gr, use.names=TRUE) = combined
 ```
 
@@ -99,6 +108,17 @@ ggplot(filtered_sites, aes(hm_beta.x, hm_beta.y)) +
   geom_hex()
 ```
 
+```{r}
+# Get transcripts corresponding to the gene.
+tx <- transcriptsBy(txdb, by='gene')  # All transcripts by gene.
+tx <- tx[[gene_id]]
+
+# Get the exons corresponding to one of the transcripts in the gene.
+exons <- exonsBy(txdb, by='tx')  # All exons by transcript.
+tx_name <- tx$tx_name[1]  # Pick the first transcript.
+tx_id <- tx$tx_id[1]
+exons <- exons[[tx_id]]
+```
 
 
 
