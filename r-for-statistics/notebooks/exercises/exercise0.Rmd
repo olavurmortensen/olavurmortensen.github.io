@@ -3,16 +3,19 @@ title: "Exercise 0"
 output: html_notebook
 ---
 
-# Exercise 0.1a
+# Exercise 0.1
+
+We will work with the iris dataset, which contains size measurements of different species of flowers. This dataset is built into R and can be loaded with the simple command below.
 
 ```{r}
 data('iris')
 ```
 
+Let's take a look at the data.
+
 ```{r}
 head(iris)
 ```
-
 
 Read about these functions, try them on `iris`, and try to understand their output:
 
@@ -21,7 +24,7 @@ Read about these functions, try them on `iris`, and try to understand their outp
 * `names`
 * `summary`
 
-# Exercise 0.1b
+# Exercise 0.2
 
 Say we want to draw random samples from `iris`. How do we do this? Go to Google and search for "draw random samples from data frame R". One of the search results will be the following question on **StackOverflow**:
 
@@ -30,7 +33,7 @@ Say we want to draw random samples from `iris`. How do we do this? Go to Google 
 Note how different the solutions are. Try loading the `dplyr` library and using the `sample_n()` function to draw random samples from `iris`.
 
 
-# Exercise 0.2
+# Exercise 0.3
 
 In this exercise we will try to write a script.
 
