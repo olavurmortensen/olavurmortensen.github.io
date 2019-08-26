@@ -1,5 +1,5 @@
 ---
-title: "Case 2.2 - Logistic regression"
+title: "Logistic regression"
 output:
   html_notebook:
     toc: true
@@ -41,17 +41,8 @@ Odds-ratio refers to the difference in odds for getting the response variable or
 
 Our H0 (null-hypothesis) states that there is no association between a risk factor and the outcome variable.
 
-### The model
 
-Prioritising the variables
-
-- De primære variable er de uafhængige variable, som har særlig – faglig – interesse Sammenhængene mellem de primære variable og den afhængige variabel er de primære sammenhænge
-- De sekundære variable er dem, hvis eneste funktion er at optræde som kontrolvariable Sammenhængene mellem den afhængige variabel og de sekundære variable omtales som sekundære sammenhænge
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+```{r message=FALSE}
 library(readr)  # Reading data.
 library(tibble)  # The "tibble" datastructure.
 library(dplyr)  # Working with the tibble datastructure.
@@ -69,7 +60,7 @@ We will go back to the data loaded previously ("weight_height_data.xlsx"). The d
 The outcome variable is now a continous variable, however our hypothesis is stated as if the variable was a binary variable. So we have to change it to a binary variable. The predictor variables are continous and dicotom variables (h1, w0, gender).
 
 ```{r}
-data <- read_delim('weight_height_cleanup.csv', delim=',')
+data <- read_csv('weight_height_cleanup.csv')
 head(data)
 ```
 
@@ -145,7 +136,6 @@ You can also exponentiate the coefficients and interpret them as odds-ratios. R 
 ```{r}
 exp(cbind(OR = coef(logit), confint(logit)))
 ```
-
 
 
 It is possible to test for interactions when there are multiple predictors. The interactions can be specified individually, as with a + b + c + a:b + b:c + a:b:c, or they can be expanded automatically, with a * b * c.
