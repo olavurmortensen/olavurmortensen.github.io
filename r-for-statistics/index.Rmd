@@ -119,6 +119,13 @@ Number | Description | Notebook
 3.2 | Genomics with Bioconductor. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html)
 
 
+# Exercises
+
+Below is an overview of all the exercise notebooks.
+
+Number | Description | Notebook
+---|---|---
+0 | Plotting, directories and scripts | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise0.nb.html)
 
 
 
