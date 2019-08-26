@@ -91,13 +91,7 @@ Every case study session will include a small hands-on exercise session, a summa
 
 First and foremost, our advice to you when the course is over is to start analysing data, writing scripts and notebooks, and making projects in R. Statistics and programming is something you primarily learn by experience. Here follow a few book ideas you can try if you want to read more.
 
-You can of course continue reading "Hands-on Programming with R", as part 3 contains some more advanced material covering, among other things, more programmatic aspects of R.
-
-"Data Analysis for the Life Sciences" covers statistics using R, and is very practical and clear. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.
-
-> "Data Analysis for the Life Sciences" by Rafael A. Irizarry and Michael I. Love
->
-> https://leanpub.com/dataanalysisforthelifesciences
+You can of course continue reading **Hands-on Programming with R**, as part 3 contains some more advanced material covering, among other things, more programmatic aspects of R.
 
 "R for Data Science" covers topics similar to this course, including plotting with `ggplot2` and data manipulation with `dplyr`.
 
@@ -105,18 +99,26 @@ You can of course continue reading "Hands-on Programming with R", as part 3 cont
 >
 > https://r4ds.had.co.nz/
 
+"Data Analysis for the Life Sciences" covers statistics using R, and is very practical and clear. It is more geared toward people who know R and are trying to learning statistics, rather than people trying to learn R, but is nonetheless very useful.
+
+> "Data Analysis for the Life Sciences" by Rafael A. Irizarry and Michael I. Love
+>
+> https://leanpub.com/dataanalysisforthelifesciences
+
 # Case studies
 
 Below is an overview of all the case study notebooks.
 
 Number | Description | Notebook
 ---|---|---
-1.1 | Reading data, plotting, and t test. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/t-test.nb.html)
-1.2 | Linear regression and more plotting. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/linear_regression.nb.html)
-2.1 | Cleaning up messy data. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/data_cleanup.nb.html)
-2.2 | Logistic regression. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/logistic_regression.nb.html)
-3.1 | Working with map data. | **TODO**
-3.2 | Genomics with Bioconductor. | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html)
+1.1 | Reading data, plotting, and t test | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/t-test.nb.html)
+1.2 | Linear regression and more plotting | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/linear_regression.nb.html)
+2.1 | Cleaning up messy data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/data_cleanup.nb.html)
+2.2 | ANOVA | **TODO**
+2.3 | Logistic regression | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/logistic_regression.nb.html)
+3.1 | Genomics with Bioconductor | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html)
+4.1 | Survival analysis | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/survival_analysis.html)
+4.2 | Working with map data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/maps_workshop.nb.html)
 
 
 # Exercises
@@ -125,7 +127,8 @@ Below is an overview of all the exercise notebooks.
 
 Number | Description | Notebook
 ---|---|---
-0 | Plotting, directories and scripts | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise0.nb.html)
+0 | Plotting, directories, scripts and finding help | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise0.nb.html)
+1 | More plotting and finding help | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise1.nb.html)
 
 
 
