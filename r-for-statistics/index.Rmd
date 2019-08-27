@@ -6,8 +6,6 @@ output:
     toc_float: true
 ---
 
-**NOTE:** This web-page is *NOT* "live". It is under development and the information here is not relevant *yet*.
-
 This website concerns the "R for Statistics" PhD course at the University of the Faroe Islands. Read more about the course here: https://www.setur.fo/fo/utbugving/stakgreinalestur/depilin-fyri-heilsu-og-almannagransking/r-for-statistics-basic-course-in-the-statistical-program-r-and-rstudio/
 
 In this course, we learn how to use R and RStudio for statistics. We do not teach statistics in this course, and assume that participants are at least somewhat familiar with statistics. The course is very practical, and is based on short case studies where we go through four basic steps of statistics, loading, cleaning, plotting, and modelling data.
@@ -73,6 +71,8 @@ After installing RStudio, try installing this package. Hopefully, the package wi
 
 ```
 install.packages('tidyverse')
+install.packages('magrittr')
+install.packages('devtools')
 ```
 
 # Course overview
