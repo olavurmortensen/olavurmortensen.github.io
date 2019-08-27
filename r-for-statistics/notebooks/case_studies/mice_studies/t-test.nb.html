@@ -383,10 +383,14 @@ mice &lt;- mice %&gt;% rename('sex' = 'Sex', 'diet' = 'Diet', 'weight' = 'Bodywe
 <p>We are not going to use all of the columns in the data, so we drop all the unused columns. We do this using the <code>select()</code> function, supplying the names of the columns we want to retain.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTdWJzZXQgdGhlIGNvbHVtbnMgaW4gdGhlIGRhdGEuXG5taWNlIDwtIG1pY2UgJT4lIHNlbGVjdChcImRpZXRcIiwgXCJ3ZWlnaHRcIilcbmBgYCJ9 -->
-<pre class="r"><code># Subset the columns in the data.
-mice &lt;- mice %&gt;% select(&quot;diet&quot;, &quot;weight&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWljZSA8LSBtaWNlICU+JSBzZWxlY3QoXCJkaWV0XCIsIFwid2VpZ2h0XCIpXG5cbmBgYCJ9 -->
+<pre class="r"><code>mice &lt;- mice %&gt;% select(&quot;diet&quot;, &quot;weight&quot;)
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFVua25vd24gY29sdW1uIGBkaWV0YCBcbkNhbGwgYHJsYW5nOjpsYXN0X2Vycm9yKClgIHRvIHNlZSBhIGJhY2t0cmFjZVxuIn0= -->
+<pre><code>Error: Unknown column `diet` 
+Call `rlang::last_error()` to see a backtrace</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Next, we will use the <code>mutate()</code> function to convert the <code>diet</code> variable from characters to factors. Below, we use <code>as.factor()</code> to convert the <code>diet</code> variable, and use <code>mutate()</code> to overwrite the existing <code>diet</code> variable.</p>

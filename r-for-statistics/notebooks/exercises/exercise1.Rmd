@@ -35,7 +35,7 @@ Make a new variable in `iris` that is a the difference between the `Sepal.Width`
 
 # Exercise 1.4
 
-
+Try making a linear regression between two of the measurement variables using `lm()`. Try experimenting the model, adding more variables and interactions between variables.
 
 
 

@@ -129,7 +129,9 @@ Number | Description | Notebook
 ---|---|---
 0 | Plotting, directories, scripts and finding help | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise0.nb.html)
 1 | More plotting and finding help | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise1.nb.html)
-
+2 | Analyse data from case 2.1 | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise2.nb.html)
+3a | Logistic regression | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise3a.nb.html)
+3b | Election data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/exercise3b.nb.html)
 
 
 

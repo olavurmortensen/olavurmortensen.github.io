@@ -1,0 +1,17 @@
+---
+title: "Exercise 2"
+output: html_notebook
+---
+
+In this exercise, we want you to analyse the data we cleaned up in case 2.1. The data is available at this link:
+
+> https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/weight_height_data.csv
+
+* Make a new project for this analysis
+* Make a script
+* Analyse the data:
+    * Read data
+    * Plot data
+    * Model data and/or run statistical tests
+
+

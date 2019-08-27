@@ -1,0 +1,82 @@
+---
+title: "Exercise 3b: election data"
+output: html_notebook
+---
+
+# Exercise 3b.1
+
+We have downloaded data from www.hagstova.fo and cleaned it up a little bit, and it is avilable here:
+
+> https://olavurmortensen.github.io/r-for-statistics/notebooks/exercises/election_data.csv
+
+This data contains data on the Faroese parliament elections, the number of votes for each party since 1978. Let's explore this data a bit.
+
+We will need the `tidyr` package in this exercise.
+
+```{r eval=FALSE}
+install.packages('tidyr')
+```
+
+First load some packages.
+
+```{r message=FALSE}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(magrittr)
+```
+
+Note that if we try to load this data with default parameters, we get an error.
+
+```{r eval=FALSE}
+data <- read_csv('election_data.csv')
+```
+
+The error in this case would be:
+
+> Error in make.names(x) : invalid multibyte string at '<e1>r'
+
+This is because the data contains some characters that don't conform with the default character encoding in `read_csv()`, which is `"UTF-8"`. Most likely, the character causing the trouble is `"ð"`. We need to change the character encoding, and in `read_csv()` we do it in the following way.
+
+```{r message=FALSE}
+data <- read_csv('election_data.csv', locale=locale(encoding='ISO-8859-1'))
+```
+
+
+```{r include=FALSE}
+data <- data %>% rename('year'='ár', 'ja'='Javnaðarflokkurin', 'ff'='Fólkaflokkurin', 'sa'='Sambandsflokkurin', 'sj'='Nýtt Sjálvstýri', 'tj'='Tjóðveldi', 'mi'='Miðflokkurin', 'fr'='Framsókn')
+```
+
+# Exercise 3b.2
+
+After you have loaded the data, give the variables more convenient (easy to write) names, using `rename()`. Then, run the following code:
+
+```{r}
+data <- data %>% gather(key='party', value='votes', 'ff', 'sa', 'ja', 'sj', 'tj', 'mi', 'fr')
+```
+
+Look at the dataset, can you see what has happened to the dataset? Look up the `gather()` function on the `tidyr` website (https://tidyr.tidyverse.org/) to understand this function.
+
+# Exercise 3b.3
+
+Make a bar chart using the `geom_col()` function. Look up its documentation to figure out how it works. Try making a stacked bar chart where each party is a different color.
+
+# Exercise 3b.4
+
+Plot each party's votes as a line, and color the lines by party.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
