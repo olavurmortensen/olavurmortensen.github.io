@@ -109,16 +109,16 @@ You can of course continue reading **Hands-on Programming with R**, as part 3 co
 
 Below is an overview of all the case study notebooks.
 
-Number | Description | Notebook
----|---|---
-1.1 | Reading data, plotting, and t test | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/t-test.nb.html)
-1.2 | Linear regression and more plotting | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/linear_regression.nb.html)
-2.1 | Cleaning up messy data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/data_cleanup.nb.html)
-2.2 | ANOVA | **TODO**
-2.3 | Logistic regression | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/logistic_regression.nb.html)
-3.1 | Genomics with Bioconductor | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html)
-4.1 | Survival analysis | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/survival_analysis.html)
-4.2 | Working with map data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/maps_workshop.nb.html)
+Number | Description | Notebook | Data
+---|---|---|----
+1.1 | Reading data, plotting, and t test |  [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/t-test.nb.html) | [Data](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/mice_pheno.csv)
+1.2 | Linear regression and more plotting | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/linear_regression.nb.html) | [Data](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/mice_studies/mice_pheno.csv)
+2.1 | Cleaning up messy data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/data_cleanup.nb.html) | [Data (raw)](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/weight_height_data.csv), [Data (cleaned)](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/weight_height_cleanup.csv)
+3.1 | Logistic regression | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/children_biometric_studies/logistic_regression.nb.html) | Clean data from case 2.1
+3.2 | ANOVA | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/anova/anova_case.html) | [Data](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/anova/vindata.csv)
+3.3 | Genomics with Bioconductor | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/gwas_metaanalysis/bioconductor.nb.html) | Data avilable at https://www.ebi.ac.uk/gwas/
+4.1 | Survival analysis | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/survival_analysis.html) | R built-in
+4.2 | Working with map data | [Notes](https://olavurmortensen.github.io/r-for-statistics/notebooks/case_studies/maps_workshop.nb.html) | Web API
 
 
 # Exercises
