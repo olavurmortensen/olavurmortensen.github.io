@@ -1,4 +1,4 @@
-[Publications](markdown/publications) | [Projects](markdown/projects) | [Teaching](markdown/teaching)
+[Publications](publications) | [Projects](projects) | [Teaching](teaching)
 
 # Projects
 
