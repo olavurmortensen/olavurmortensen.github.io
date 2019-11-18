@@ -1,4 +1,4 @@
-[Publications](publications) | [Projects](projects) | [Teaching](teaching)
+[Home](../index) | [Publications](publications) | [Projects](projects) | [Teaching](teaching)
 
 # Publications
 
