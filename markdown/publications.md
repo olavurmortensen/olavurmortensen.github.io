@@ -1,3 +1,5 @@
+[Publications](markdown/publications) | [Projects](markdown/projects) | [Teaching](markdown/teaching)
+
 # Publications
 
 ## 2019

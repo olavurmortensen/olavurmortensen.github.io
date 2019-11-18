@@ -1,3 +1,5 @@
+[Publications](markdown/publications) | [Projects](markdown/projects) | [Teaching](markdown/teaching)
+
 # Projects
 
 ## Elucidating the genetic variation of the Faroese population
