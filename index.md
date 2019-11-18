@@ -1,7 +1,7 @@
 # Home page
 
-[Publications](publications)
+[Publications](markdown/publications)
 
-[Projects](projects)
+[Projects](markdown/projects)
 
-[Teaching](teaching)
+[Teaching](markdown/teaching)
