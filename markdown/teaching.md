@@ -1,5 +1,3 @@
-[Home](../index) | [Publications](publications) | [Projects](projects) | [Teaching](teaching)
-
 # Teaching
 
 ## R for Statistics

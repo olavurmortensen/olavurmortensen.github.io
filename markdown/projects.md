@@ -1,5 +1,3 @@
-[Home](../index) | [Publications](publications) | [Projects](projects) | [Teaching](teaching)
-
 # Projects
 
 ## Elucidating the genetic variation of the Faroese population
