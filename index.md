@@ -1,4 +1,3 @@
-Home page
-=======================
+# Home page
 
 [Publications](publications)
