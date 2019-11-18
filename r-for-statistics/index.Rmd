@@ -105,6 +105,14 @@ You can of course continue reading **Hands-on Programming with R**, as part 3 co
 >
 > https://leanpub.com/dataanalysisforthelifesciences
 
+## Useful links
+
+The Tidyverse site (https://www.tidyverse.org/) is a hub for many of the packages we use in this course such as `ggplot2` (https://ggplot2.tidyverse.org/) and `readr` (https://readr.tidyverse.org/). These sites have really good examples for how to load and plot data and many other things.
+
+Cheatsheets for many common tasks can be found here on the RStudio website (https://www.rstudio.com/resources/cheatsheets/) and includes many of the packages we use in this course.
+
+Of course, Google is our best friend for finding help. When we search for R questions in Google, it will often lead us to StackOverflow (https://stackoverflow.com/) where someone has had the same problem as us, and is asking for solutions.
+
 # Case studies
 
 Below is an overview of all the case study notebooks.
