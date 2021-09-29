@@ -2,7 +2,7 @@
 
 ## The Author-Topic Model module in Gensim
 
-I developed this module for the Gensim Python library.
+I developed the `atmodel` module for the Gensim Python library.
 
 [github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/atmodel.py#L5](https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/atmodel.py#L5)
 
