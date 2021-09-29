@@ -1,5 +1,5 @@
 
-My name is Ólavur Mortensen, I work for [FarGen](https://www.fargen.fo/en) and am a PhD student in population genetics at the [University of the Faroe Islands](https://www.setur.fo/en).
+My name is Ólavur Mortensen. I'm an engineer with a background in applied mathematics and experience in machine learning, bioinformatics, and high-performance computing. I love learning new things, and my broad background has given me the ability to learn to understand complex technologies quickly. Nature is my biggest inspiration, and I therefore aspire to contribute to a sustainable future.
 
 ![image](images/headshot.jpg)
 
