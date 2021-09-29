@@ -8,7 +8,7 @@ I developed this module for the Gensim Python library.
 
 ## PedGraph
 
-A Python library multi-layer network representation of pedigrees.
+A Python library for multi-layer network representation of pedigrees.
 
 [github.com/olavurmortensen/pedgraph](https://github.com/olavurmortensen/pedgraph)
 
@@ -20,6 +20,6 @@ A pipeline written in Nextflow to process Next-Generation Sequencing linked-read
 
 ## HMS Beagle
 
-A Docker image containing basically everything you need to do bioinformatics. This image is the user environment on the FarGen Cluster. 
+A Docker image containing basically everything you need to do bioinformatics. This image is the user environment on the FarGen Cluster.
 
 [github.com/olavurmortensen/hms-beagle}](https://github.com/olavurmortensen/hms-beagle})
