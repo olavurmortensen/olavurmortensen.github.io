@@ -1,6 +1,8 @@
 # Experience
 
-`2017 - present` **The Genetic Biobank of the Faroe Islands** *Bioinformatician / Senior Engineer*
+`2017 - present`
+**The Genetic Biobank of the Faroe Islands**
+*Bioinformatician / Senior Engineer*
 
 I was hired to work with FarGen, the Faroe Genome Project. My main responsibility was to pre-process and analyze the large amounts of DNA sequencing data coming out of the laboratory.
 
@@ -10,3 +12,28 @@ In 2018, I applied for research funding from the Research Council Faroe Islands,
 
 In September 2021, I received the new title of Senior Engineer, which was deemed more fitting to my role at FarGen.
 
+`2015-2017`
+**RaRe Technologies**
+*Intern*
+
+At RaRe Technologies, I was an open source developer for the Gensim project. In one of my projects, I developed a machine learning algorithm from scratch, wrote an efficient implementation, wrote tests through continuous integration, and wrote documentation for it. The tutorial I wrote (link below) was well received by the community. My master's thesis on the subject (link below) received the highest grade attainable.
+
+*Tutorial:* [nbviewer.jupyter.org/github/rare-technologies/gensim/blob/develop/docs/notebooks/atmodel_tutorial.ipynb](https://nbviewer.jupyter.org/github/rare-technologies/gensim/blob/develop/docs/notebooks/atmodel_tutorial.ipynb)
+
+*Master's thesis:* [www2.imm.dtu.dk/pubdb/edoc/imm6971.pdf](https://www2.imm.dtu.dk/pubdb/edoc/imm6971.pdf)
+
+`2015`
+**FractureCode Corporation**
+*Student assistant*
+
+Together with another student, I worked on a project exploring the possibilities in using big data technologies (specifically, Apache Spark) to analyze the huge amounts of data that FractureCode's customers generate.
+
+`2012`
+**Technical University of Denmark**
+*Teaching assistant*
+
+I assisted in the group work sessions in two terms of a course, teaching first year engineering students introductory programming in MatLab. I also graded reports in this course, which served as the students' exams.
+
+**Other jobs**
+
+landfill worker, mailman, supermarket clerk
