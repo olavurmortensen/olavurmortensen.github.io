@@ -1,10 +1,10 @@
 # Experience
 
 `2017 - present`
-**The Genetic Biobank of the Faroe Islands**
+**FarGen, The Faroe Genome Project**
 *Bioinformatician / Senior Engineer*
 
-I was hired to work with FarGen, the Faroe Genome Project. My main responsibility was to pre-process and analyze the large amounts of DNA sequencing data coming out of the laboratory.
+My main responsibility at FarGen ([https://www.fargen.fo/](https://www.fargen.fo/)) is to pre-process and analyze the large amounts of DNA sequencing data coming out of the laboratory.
 
 I have had the privilege and great challenge to design the FarGen Cluster. From the start I tailored the cluster specifically for bioinformatics, from bare metal to user interface. The cluster is based on a powerful compute component managed by Kubernetes, and a efficient and reliable storage component based on Ceph.
 
