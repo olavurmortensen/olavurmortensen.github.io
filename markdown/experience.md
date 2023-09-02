@@ -3,6 +3,7 @@
  2022 - present
 **Kongsberg Discovery, Uncrewed Platforms**
 *Software Engineer*
+
 Formerly known as Marine Robotics, the Uncrewed Platforms division develops an Autonomous Underwater Vehicle affectionately known as *Hugin*. As part of the Navigation team in the Software Group, my job is to develop the Inertial Navigation System (INS) that enables Hugin to navigate autonomously underwater. Furthermore, we develop post processing and visualization tools to analyze and improve navigation performance post mission.
 
 `2017 - 2022
