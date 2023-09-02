@@ -1,10 +1,15 @@
 # Experience
 
-`2017 - present`
+ 2022 - present
+**Kongsberg Discovery, Uncrewed Platforms**
+*Software Engineer*
+Formerly known as Marine Robotics, the Uncrewed Platforms division develops an Autonomous Underwater Vehicle affectionately known as *Hugin*. As part of the Navigation team in the Software Group, my job is to develop the Inertial Navigation System (INS) that enables Hugin to navigate autonomously underwater. Furthermore, we develop post processing and visualization tools to analyze and improve navigation performance post mission.
+
+`2017 - 2022
 **FarGen, The Faroe Genome Project**
 *Bioinformatician / Senior Engineer*
 
-My main responsibility at FarGen ([https://www.fargen.fo/](https://www.fargen.fo/)) is to pre-process and analyze the large amounts of DNA sequencing data coming out of the laboratory.
+My main responsibility at FarGen ([https://www.fargen.fo/](https://www.fargen.fo/)) was to pre-process and analyze the large amounts of DNA sequencing data coming out of the laboratory.
 
 I have had the privilege and great challenge to design the FarGen Cluster. From the start I tailored the cluster specifically for bioinformatics, from bare metal to user interface. The cluster is based on a powerful compute component managed by Kubernetes, and a efficient and reliable storage component based on Ceph.
 
